@@ -2,7 +2,7 @@
 About
 =====
 
-**amControls** is an EPICS IOC supporting the Additive Manufacturing at beamline 32-ID of the Advanced Photon Source.
+**amControls** is an EPICS IOC to demo how to create PVs and support callback in python.
 
 
 .. image:: img/amControls.png 

@@ -2,10 +2,10 @@
 Instrument
 ==========
 
-Laser
-=====
+MAIN
+====
 
-More infor
-----------
+More info
+---------
 
-At beamline 32-ID we use ...
+At beamline xx we use ...
