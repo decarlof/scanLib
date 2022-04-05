@@ -1,14 +1,14 @@
 
 file {
-	name="/home/beams/FAST/epics/synApps/support/amcontrols/amcontrolsApp/op/adl/amControls.adl"
+	name="/home/beams/FAST/epics/synApps/support/simEpics/simEpicsApp/op/adl/simEpics.adl"
 	version=030111
 }
 display {
 	object {
-		x=289
-		y=1125
+		x=215
+		y=1542
 		width=935
-		height=300
+		height=305
 	}
 	clr=14
 	bclr=4
@@ -119,7 +119,7 @@ text {
 	"basic attribute" {
 		clr=54
 	}
-	textix="AM Controls   $(P)$(R)"
+	textix="SimEpics   $(P)$(R)"
 	align="horiz. centered"
 }
 rectangle {
@@ -185,7 +185,7 @@ text {
 		height=20
 	}
 	monitor {
-		chan="$(P)$(R)AMStatus"
+		chan="$(P)$(R)SimEpicsStatus"
 		clr=14
 		bclr=51
 	}
@@ -195,7 +195,7 @@ text {
 }
 text {
 	object {
-		x=347
+		x=371
 		y=60
 		width=130
 		height=20
@@ -203,7 +203,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="AM Control status"
+	textix="SimEpics status"
 }
 text {
 	object {
@@ -248,7 +248,7 @@ composite {
 			}
 			display[0] {
 				label="Epics PV Names"
-				name="amControlsEPICS_PVs.adl"
+				name="simEpicsEPICS_PVs.adl"
 				args="P=$(P), R=$(R)"
 			}
 			clr=14
@@ -314,7 +314,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="amControlsPv6 float"
+	textix="simEpicsPv6 float"
 	align="horiz. right"
 }
 text {
@@ -327,7 +327,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="amControlsPv1 string"
+	textix="simEpicsPv1 string"
 	align="horiz. right"
 }
 text {
@@ -340,7 +340,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="amControlsPv2 float"
+	textix="simEpicsPv2 float"
 	align="horiz. right"
 }
 text {
@@ -353,7 +353,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="amControlsPv3 float"
+	textix="simEpicsPv3 float"
 	align="horiz. right"
 }
 text {
@@ -366,7 +366,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="amControlsPv4 float"
+	textix="simEpicsPv4 float"
 	align="horiz. right"
 }
 text {
@@ -379,7 +379,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="amControlsPv5 string"
+	textix="simEpicsPv5 string"
 	align="horiz. right"
 }
 "text entry" {
@@ -390,7 +390,7 @@ text {
 		height=20
 	}
 	control {
-		chan="$(P)$(R)amControlsPv2"
+		chan="$(P)$(R)simEpicsPv2"
 		clr=14
 		bclr=51
 	}
@@ -406,7 +406,7 @@ text {
 		height=20
 	}
 	control {
-		chan="$(P)$(R)amControlsPv1"
+		chan="$(P)$(R)simEpicsPv1"
 		clr=14
 		bclr=51
 	}
@@ -422,7 +422,7 @@ text {
 		height=20
 	}
 	control {
-		chan="$(P)$(R)amControlsPv4"
+		chan="$(P)$(R)simEpicsPv4"
 		clr=14
 		bclr=51
 	}
@@ -438,7 +438,7 @@ text {
 		height=20
 	}
 	control {
-		chan="$(P)$(R)amControlsPv5"
+		chan="$(P)$(R)simEpicsPv5"
 		clr=14
 		bclr=51
 	}
@@ -454,7 +454,7 @@ text {
 		height=20
 	}
 	control {
-		chan="$(P)$(R)amControlsPv6"
+		chan="$(P)$(R)simEpicsPv6"
 		clr=14
 		bclr=51
 	}
@@ -470,7 +470,7 @@ text {
 		height=20
 	}
 	control {
-		chan="$(P)$(R)amControlsPv3"
+		chan="$(P)$(R)simEpicsPv3"
 		clr=14
 		bclr=51
 	}

@@ -70,7 +70,7 @@ master_doc = 'index'
 
 # General information about the project.
 Affiliation = u'Argonne National Laboratory'
-project = u'amControls'
+project = u'simEpics'
 copyright = u'2022, ' + Affiliation
 
 # The version info for the project you're documenting, acts as replacement for

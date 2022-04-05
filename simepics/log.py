@@ -1,5 +1,5 @@
 '''
-    amcontrols custom logger
+    simepics custom logger
     
 '''
 import logging

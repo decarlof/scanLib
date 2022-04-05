@@ -1,5 +1,0 @@
-====
-Demo
-====
-
-**amControls** allows for ...

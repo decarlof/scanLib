@@ -1,0 +1,6 @@
+file "$(TOP)/db/simEpics.template"
+{
+pattern
+{  P,        R,      CAMERA_PREFIX,   EXAMPLE_PV_NAME}
+{32id:, SimEpics:,    2bmbSP2:      32id:m1}
+}

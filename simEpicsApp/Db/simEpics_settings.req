@@ -25,15 +25,15 @@ $(P)$(R)YesNoSelect
 ###############
 # AM served PVs
 ###############
-$(P)$(R)amControlsPv1
-$(P)$(R)amControlsPv2
-$(P)$(R)amControlsPv3
-$(P)$(R)amControlsPv4
-$(P)$(R)amControlsPv5
-$(P)$(R)amControlsPv6
+$(P)$(R)simEpicsPv1
+$(P)$(R)simEpicsPv2
+$(P)$(R)simEpicsPv3
+$(P)$(R)simEpicsPv4
+$(P)$(R)simEpicsPv5
+$(P)$(R)simEpicsPv6
 
 ##############################
 # AM status via Channel Access
 ##############################
-#controlPV $(P)$(R)AMStatus
+#controlPV $(P)$(R)SimEpicsStatus
 #controlPV $(P)$(R)Watchdog

@@ -1,5 +1,5 @@
 ==========
-amControls
+simEpics
 ==========
 
 Content
@@ -9,8 +9,6 @@ Content
    :maxdepth: 1
 
    about
-   instrument
-   usage
-   demo
    install
-   amControlsApp
+   usage
+   simEpicsApp

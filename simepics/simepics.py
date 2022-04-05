@@ -8,12 +8,12 @@ import signal
 import json
 
 from pathlib import Path
-from amcontrols import util
-from amcontrols import log
+from simepics import util
+from simepics import log
 from epics import PV
 
 
-class AMControls():
+class SimEpics():
     """ Class for controlling TXM optics via EPICS
 
         Parameters
@@ -59,9 +59,9 @@ class AMControls():
         thread = threading.Thread(target=self.reset_watchdog, args=(), daemon=True)
         thread.start()
 
-        log.setup_custom_logger("./amcontrols.log")
+        log.setup_custom_logger("./simepics.log")
 
-        self.epics_pvs['AMStatus'].put('All good!')
+        self.epics_pvs['SimEpicsStatus'].put('All good!')
 
     def reset_watchdog(self):
         """Sets the watchdog timer to 5 every 3 seconds"""
@@ -69,10 +69,10 @@ class AMControls():
             self.epics_pvs['Watchdog'].put(5)
             time.sleep(3)
 
-        log.setup_custom_logger("./amcontrols.log")
+        log.setup_custom_logger("./simepics.log")
 
     def read_pv_file(self, pv_file_name, macros):
-        """Reads a file containing a list of EPICS PVs to be used by AMControls.
+        """Reads a file containing a list of EPICS PVs to be used by SimEpics.
 
 
         Parameters
@@ -170,12 +170,12 @@ class AMControls():
         """
 
         if (self.epics_pvs['YesNoSelect'].get() == 0):
-            am_control_pv2_value = self.epics_pvs['amControlsPv2'].get()
-            self.epics_pvs['amControlsPv2'].put(am_control_pv2_value/2.0)
+            am_control_pv2_value = self.epics_pvs['simEpicsPv2'].get()
+            self.epics_pvs['simEpicsPv2'].put(am_control_pv2_value/2.0)
             log.info('Yes/No set at %f' % am_control_pv2_value)
-            self.epics_pvs['AMStatus'].put('divide by 2')
+            self.epics_pvs['SimEpicsStatus'].put('divide by 2')
         else:
-            am_control_pv2_value = self.epics_pvs['amControlsPv2'].get()
-            self.epics_pvs['amControlsPv2'].put(am_control_pv2_value*2.0)
+            am_control_pv2_value = self.epics_pvs['simEpicsPv2'].get()
+            self.epics_pvs['simEpicsPv2'].put(am_control_pv2_value*2.0)
             log.info('Yes/No set at %f' % am_control_pv2_value)
-            self.epics_pvs['AMStatus'].put('multiply by 2')
+            self.epics_pvs['SimEpicsStatus'].put('multiply by 2')

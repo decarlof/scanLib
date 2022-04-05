@@ -1,17 +1,17 @@
 < envPaths
 
 epicsEnvSet("P", "32id:")
-epicsEnvSet("R", "AMControls:")
+epicsEnvSet("R", "SimEpics:")
 
 ## Register all support components
 
-# Use these lines to run the locally built amcontrolsApp
-dbLoadDatabase "../../dbd/amcontrolsApp.dbd"
-amcontrolsApp_registerRecordDeviceDriver pdbbase
+# Use these lines to run the locally built simEpicsApp
+dbLoadDatabase "../../dbd/simEpicsApp.dbd"
+simEpicsApp_registerRecordDeviceDriver pdbbase
 
 
 
-dbLoadTemplate("amControls.substitutions")
+dbLoadTemplate("simEpics.substitutions")
 
 < save_restore.cmd
 save_restoreSet_status_prefix($(P))

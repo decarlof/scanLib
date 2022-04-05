@@ -36,34 +36,34 @@ record(mbbo, "$(P)$(R)YesNoSelect") {
 # AM served PVs
 ###############
 
-record(stringout, "$(P)$(R)amControlsPv1")
+record(stringout, "$(P)$(R)simEpicsPv1")
 {
    field(VAL,  "Unknown")
 }
 
-record(ao, "$(P)$(R)amControlsPv2")
+record(ao, "$(P)$(R)simEpicsPv2")
 {
    field(PREC,  "2")
 }
 
-record(ao, "$(P)$(R)amControlsPv3")
+record(ao, "$(P)$(R)simEpicsPv3")
 {
    field(PREC, "2")
    field(EGU,  "microns")
 }
 
-record(ao, "$(P)$(R)amControlsPv4")
+record(ao, "$(P)$(R)simEpicsPv4")
 {
    field(PREC, "2")
    field(EGU,  "microns")
 }
 
-record(stringout, "$(P)$(R)amControlsPv5")
+record(stringout, "$(P)$(R)simEpicsPv5")
 {
    field(VAL,  "Unknown")
 }
 
-record(ao, "$(P)$(R)amControlsPv6")
+record(ao, "$(P)$(R)simEpicsPv6")
 {
    field(PREC, "2")
    field(EGU,  "mm")
@@ -73,7 +73,7 @@ record(ao, "$(P)$(R)amControlsPv6")
 # AM status via Channel Access
 ##############################
 
-record(waveform,"$(P)$(R)AMStatus") 
+record(waveform,"$(P)$(R)SimEpicsStatus") 
 {
    field(FTVL, "UCHAR")
    field(NELM, "256")

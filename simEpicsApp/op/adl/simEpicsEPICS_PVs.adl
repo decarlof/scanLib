@@ -1,6 +1,6 @@
 
 file {
-	name="/home/beams/FAST/epics/synApps/support/amcontrols/amcontrolsApp/op/adl/amControlsEPICS_PVs.adl"
+	name="/home/beams/FAST/epics/synApps/support/simepics/simEpicsApp/op/adl/simEpicsEPICS_PVs.adl"
 	version=030111
 }
 display {

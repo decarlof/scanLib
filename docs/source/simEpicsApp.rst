@@ -1,35 +1,35 @@
-===============================
-amcontrolsApp EPICS application
-===============================
+=============================
+simEpicsApp EPICS application
+=============================
 
 .. 
    toctree::
    :hidden:
 
    amcntrols.template
-   amcontrols_settings.req
-   amcontrols.substitutions
+   simepics_settings.req
+   simepics.substitutions
 
 
-amControls includes a complete example EPICS application, including:
+simEpics includes a complete example of an EPICS application, consisting of:
 
-- A database file and corresponding autosave request file that contain the PVs required by the amcontrols.py base class.
+- A database file and corresponding autosave request file that contain the PVs required by the simepics.py base class.
 - OPI screens for medm
 - An example IOC application that can be used to run the above databases.
   The databases are loaded in the IOC with the example substitutions file, 
-  :doc:`amControls.substitutions`.
+  :doc:`simEpics.substitutions`.
 
 
 Base class files
 ================
-The following tables list all of the records in the amControls.template file.
-These records are used by the amcontrols base class and so are required.
+The following tables list all of the records in the simEpics.template file.
+These records are used by the simepics base class and so are required.
 
-amControls.template
+simEpics.template
 -------------------
 
 This is the database file that contains only the PVs required by the amcontrol.py base class
-:doc:`amControls.template`.
+:doc:`simEpics.template`.
 
 Camera PV Prefixes
 ------------------
@@ -72,46 +72,46 @@ AM served PVs
   * - Record name
     - Record type
     - Description
-  * - $(P)$(R)amControlsPv1
+  * - $(P)$(R)simEpicsPv1
     - stringout
     - Contains a string PV.
-  * - $(P)$(R)amControlsPv1
+  * - $(P)$(R)simEpicsPv1
     - ao
     - Contains a float PV.
-  * - $(P)$(R)amControlsPv1
+  * - $(P)$(R)simEpicsPv1
     - ao
     - Contains a float PV.
-  * - $(P)$(R)amControlsPv1
+  * - $(P)$(R)simEpicsPv1
     - ao
     - Contains a float PV.
-  * - $(P)$(R)amControlsPv1
+  * - $(P)$(R)simEpicsPv1
     - stringout
     - Contains a string PV.
-  * - $(P)$(R)amControlsPv1
+  * - $(P)$(R)simEpicsPv1
     - stringout
     - Contains a string PV.
 
 medm files
 ----------
 
-amControls.adl
+simEpics.adl
 ^^^^^^^^^^^^^^
 
-The following is the MEDM screen :download:`amControls.adl <../../amcontrolsApp/op/adl/amControls.adl>` during a scan. 
+The following is the MEDM screen :download:`simEpics.adl <../../simEpicsApp/op/adl/simEpics.adl>` during a scan. 
 The status information is updating.
 
-.. image:: img/amControls.png
+.. image:: img/simEpics.png
     :width: 75%
     :align: center
 
-amControlsEPICS_PVs.adl
+simEpicsEPICS_PVs.adl
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-The following is the MEDM screen :download:`amControlsEPICS_PVs.adl <../../amcontrolsApp/op/adl/amControlsEPICS_PVs.adl>`. 
+The following is the MEDM screen :download:`simEpicsEPICS_PVs.adl <../../simEpicsApp/op/adl/simEpicsEPICS_PVs.adl>`. 
 
-If these PVs are changed amControls must be restarted.
+If these PVs are changed simEpics must be restarted.
 
-.. image:: img/amControlsEPICS_PVs.png
+.. image:: img/simEpicsEPICS_PVs.png
     :width: 75%
     :align: center
 
