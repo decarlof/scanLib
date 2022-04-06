@@ -170,12 +170,14 @@ class SimEpics():
         """
 
         if (self.epics_pvs['YesNoSelect'].get() == 0):
-            am_control_pv2_value = self.epics_pvs['simEpicsPv2'].get()
-            self.epics_pvs['simEpicsPv2'].put(am_control_pv2_value/2.0)
-            log.info('Yes/No set at %f' % am_control_pv2_value)
-            self.epics_pvs['SimEpicsStatus'].put('divide by 2')
+            sim_epics_pv2_value = self.epics_pvs['simEpicsPv2'].get()
+            self.epics_pvs['simEpicsPv1'].put('Hello World!')
+            self.epics_pvs['simEpicsPv2'].put(sim_epics_pv2_value/2.0)
+            log.info('Yes/No set at %f' % sim_epics_pv2_value)
+            self.epics_pvs['SimEpicsStatus'].put('divide by 2 simEpicsPv2')
         else:
-            am_control_pv2_value = self.epics_pvs['simEpicsPv2'].get()
-            self.epics_pvs['simEpicsPv2'].put(am_control_pv2_value*2.0)
-            log.info('Yes/No set at %f' % am_control_pv2_value)
-            self.epics_pvs['SimEpicsStatus'].put('multiply by 2')
+            sim_epics_pv2_value = self.epics_pvs['simEpicsPv2'].get()
+            self.epics_pvs['simEpicsPv1'].put('Hello APS!')
+            self.epics_pvs['simEpicsPv2'].put(sim_epics_pv2_value*2.0)
+            log.info('Yes/No set at %f' % sim_epics_pv2_value)
+            self.epics_pvs['SimEpicsStatus'].put('multiply by 2 simEpicsPv2')
