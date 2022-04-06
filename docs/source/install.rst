@@ -74,6 +74,33 @@ To build a minimal synApp::
     $ make release
     $ make -sj
 
+Build the python server
+-----------------------
+
+To build the **simEpics** python server you need to have `Conda <https://docs.conda.io/en/latest/miniconda.html>`_
+installed.
+
+Next, create a dedicated conda environment for simEpics by running::
+
+    (base) $ conda create --name simepics python=3.9
+
+then::
+
+    (base) $ conda activate simepics
+
+and install the required python packages::
+
+    (simepics) $ pip install pvapy
+    (simepics) $ pip install pyepics
+
+Finally you can build **simEpics** with::
+
+    (simepics) $ cd ~/epics/synApps/support/simEpics/
+    (simepics) $ python setup.py install
+
+To run the python server::
+
+    (simepics) $ python -i start_simepics.py
 
 
 
