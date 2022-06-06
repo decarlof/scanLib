@@ -1,0 +1,2 @@
+file "scanLib.req", P=$(P), R=$(R)
+file "scanLib_settings.req", P=$(P), R=$(R)

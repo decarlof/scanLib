@@ -2,22 +2,22 @@
 Usage
 =====
 
-**simEpics** is a simple EPICS IOC to use as a template for creating EPICS PVs.  **simEpics** also provides callback support examples using python.
+**scanLib** is a simple EPICS IOC to use as a template for creating EPICS PVs.  **scanLib** also provides callback support examples using python.
 
 Start EPICS IOC
 ---------------
 
-Edit ~/epics/synApps/support/simepics/configure to set EPICS_BASE to point to the location of EPICS base, i.e.:
+Edit ~/epics/synApps/support/scanlib/configure to set EPICS_BASE to point to the location of EPICS base, i.e.:
 
 ::
 
     EPICS_BASE=/APSshare/epics/base-3.15.6
 
-then start the **simEpics** epics ioc with:
+then start the **scanLib** epics ioc with:
 
 ::
 
-    $ cd ~/epics/synApps/support/simepics/iocBoot/iocSimEpics
+    $ cd ~/epics/synApps/support/scanlib/iocBoot/iocScanLib
     $ start_IOC
 
 
@@ -26,13 +26,13 @@ Start MEDM screen
 
 ::
 
-    $ cd ~/epics/synApps/support/simepics/iocBoot/iocSimEpics
+    $ cd ~/epics/synApps/support/scanlib/iocBoot/iocScanLib
     $ start_medm
 
 
-**simEpics** control screen with no python server running:
+**scanLib** control screen with no python server running:
 
-.. image:: img/simEpicsNoPython.png 
+.. image:: img/scanLibNoPython.png 
    :width: 720px
    :align: center
    :alt: am_user
@@ -44,23 +44,23 @@ Start python server
 ::
 
     $ bash
-    (base) $ conda activate simepics
-    (simepics) $ cd ~/epics/synApps/support/simepics/iocBoot/iocSimEpics
-    (simepics) $ python -i start_simepics.py
+    (base) $ conda activate scanlib
+    (scanlib) $ cd ~/epics/synApps/support/scanlib/iocBoot/iocScanLib
+    (scanlib) $ python -i start_scanlib.py
 	configPVS:
 	CameraPVPrefix : 2bmbSP2:
 	ExamplePVName : 32id:m1
 	YesNoSelect : Yes
-	simEpicsPv1 : Unknown
-	simEpicsPv2 : 500.00
-	simEpicsPv3 : 0
-	simEpicsPv4 : 0
-	simEpicsPv5 : Unknown
-	simEpicsPv6 : 0
+	scanLibPv1 : Unknown
+	scanLibPv2 : 500.00
+	scanLibPv3 : 0
+	scanLibPv4 : 0
+	scanLibPv5 : Unknown
+	scanLibPv6 : 0
 
 	controlPVS:
 	Example : None
-	SimEpicsStatus : divide by 2
+	ScanLibStatus : divide by 2
 	Watchdog : -2265
 
 	pv_prefixes:
@@ -68,9 +68,9 @@ Start python server
 	>>>
 
 
-**simEpics** control screen with python server running:
+**scanLib** control screen with python server running:
 
-.. image:: img/simEpics.png 
+.. image:: img/scanLib.png 
    :width: 720px
    :align: center
    :alt: am_user
@@ -79,4 +79,4 @@ Start python server
 Testing
 -------
 
-Pressing  Yes/No will run a callback that divide by 2 the value entered in the simEpicsPv2 field
+Pressing  Yes/No will run a callback that divide by 2 the value entered in the scanLibPv2 field

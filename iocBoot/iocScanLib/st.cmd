@@ -1,17 +1,17 @@
 < envPaths
 
 epicsEnvSet("P", "32id:")
-epicsEnvSet("R", "SimEpics:")
+epicsEnvSet("R", "ScanLib:")
 
 ## Register all support components
 
-# Use these lines to run the locally built simEpicsApp
-dbLoadDatabase "../../dbd/simEpicsApp.dbd"
-simEpicsApp_registerRecordDeviceDriver pdbbase
+# Use these lines to run the locally built scanLibApp
+dbLoadDatabase "../../dbd/scanLibApp.dbd"
+scanLibApp_registerRecordDeviceDriver pdbbase
 
 
 
-dbLoadTemplate("simEpics.substitutions")
+dbLoadTemplate("scanLib.substitutions")
 
 < save_restore.cmd
 save_restoreSet_status_prefix($(P))

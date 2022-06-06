@@ -1,5 +1,5 @@
-# Use this line to run the locally built simEpicsApp
-../../bin/linux-x86_64/simEpicsApp st.cmd
+# Use this line to run the locally built scanLibApp
+../../bin/linux-x86_64/scanLibApp st.cmd
 
 # Use this line to run the xxx application on /APSshare
 #/APSshare/epics/synApps_6_1/support/xxx-R6-1/bin/linux-x86_64/xxx st.cmd

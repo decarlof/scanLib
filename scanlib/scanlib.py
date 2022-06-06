@@ -8,12 +8,12 @@ import signal
 import json
 
 from pathlib import Path
-from simepics import util
-from simepics import log
+from scanlib import util
+from scanlib import log
 from epics import PV
 
 
-class SimEpics():
+class ScanLib():
     """ Class for controlling TXM optics via EPICS
 
         Parameters
@@ -59,9 +59,9 @@ class SimEpics():
         thread = threading.Thread(target=self.reset_watchdog, args=(), daemon=True)
         thread.start()
 
-        log.setup_custom_logger("./simepics.log")
+        log.setup_custom_logger("./scanlib.log")
 
-        self.epics_pvs['SimEpicsStatus'].put('All good!')
+        self.epics_pvs['ScanLibStatus'].put('All good!')
 
     def reset_watchdog(self):
         """Sets the watchdog timer to 5 every 3 seconds"""
@@ -69,10 +69,10 @@ class SimEpics():
             self.epics_pvs['Watchdog'].put(5)
             time.sleep(3)
 
-        log.setup_custom_logger("./simepics.log")
+        log.setup_custom_logger("./scanlib.log")
 
     def read_pv_file(self, pv_file_name, macros):
-        """Reads a file containing a list of EPICS PVs to be used by SimEpics.
+        """Reads a file containing a list of EPICS PVs to be used by ScanLib.
 
 
         Parameters
@@ -170,14 +170,14 @@ class SimEpics():
         """
 
         if (self.epics_pvs['YesNoSelect'].get() == 0):
-            sim_epics_pv2_value = self.epics_pvs['simEpicsPv2'].get()
-            self.epics_pvs['simEpicsPv1'].put('Hello World!')
-            self.epics_pvs['simEpicsPv2'].put(sim_epics_pv2_value/2.0)
+            sim_epics_pv2_value = self.epics_pvs['scanLibPv2'].get()
+            self.epics_pvs['scanLibPv1'].put('Hello World!')
+            self.epics_pvs['scanLibPv2'].put(sim_epics_pv2_value/2.0)
             log.info('Yes/No set at %f' % sim_epics_pv2_value)
-            self.epics_pvs['SimEpicsStatus'].put('divide by 2 simEpicsPv2')
+            self.epics_pvs['ScanLibStatus'].put('divide by 2 scanLibPv2')
         else:
-            sim_epics_pv2_value = self.epics_pvs['simEpicsPv2'].get()
-            self.epics_pvs['simEpicsPv1'].put('Hello APS!')
-            self.epics_pvs['simEpicsPv2'].put(sim_epics_pv2_value*2.0)
+            sim_epics_pv2_value = self.epics_pvs['scanLibPv2'].get()
+            self.epics_pvs['scanLibPv1'].put('Hello APS!')
+            self.epics_pvs['scanLibPv2'].put(sim_epics_pv2_value*2.0)
             log.info('Yes/No set at %f' % sim_epics_pv2_value)
-            self.epics_pvs['SimEpicsStatus'].put('multiply by 2 simEpicsPv2')
+            self.epics_pvs['ScanLibStatus'].put('multiply by 2 scanLibPv2')

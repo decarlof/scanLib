@@ -1,12 +1,12 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='simepics',
+    name='scanlib',
     version=open('VERSION').read().strip(),
     author='Francesco De Carlo',
-    url='https://github.com/xray-imaging/simepics',
+    url='https://github.com/xray-imaging/scanlib',
     packages=find_packages(),
     include_package_data = True,
-    description='Module to control Additive Manufacturing at beamline 32-ID',
+    description='Module to support scans',
     zip_safe=False,
 )

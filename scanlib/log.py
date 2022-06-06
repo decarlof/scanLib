@@ -1,5 +1,5 @@
 '''
-    simepics custom logger
+    scanlib custom logger
     
 '''
 import logging

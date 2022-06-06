@@ -1,2 +1,0 @@
-file "simEpics.req", P=$(P), R=$(R)
-file "simEpics_settings.req", P=$(P), R=$(R)

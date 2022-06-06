@@ -32,7 +32,7 @@ To build a minimal synApp::
     #. Set FULL_CLONE=True
     #. Set EPICS_BASE to point to the location of EPICS base.  This could be on APSshare (the default), or a local version you built.
     
-    For simepics you need 
+    For scanlib you need 
     
     #. ASYN=R4-37
     #. AUTOSAVE=R5-10
@@ -57,17 +57,17 @@ To build a minimal synApp::
 .. warning:: If building for RedHat8 uncomment **TIRPC=YES** in asyn-RX-YY/configure/CONFIG_SITE
 
 
-- Clone the simepics module into synApps/support::
+- Clone the scanlib module into synApps/support::
     
-    $ git clone https://github.com/tomography/simepics.git
+    $ git clone https://github.com/tomography/scanlib.git
 
 - Edit configure/RELEASE add this line to the end::
     
-    SIMEPICS=$(SUPPORT)/simepics
+    SCANLIB=$(SUPPORT)/scanlib
 
 - Edit Makefile add this line to the end of the MODULE_LIST::
     
-    MODULE_LIST += SIMEPICS
+    MODULE_LIST += SCANLIB
 
 - Run the following commands::
 
@@ -77,30 +77,30 @@ To build a minimal synApp::
 Build the python server
 -----------------------
 
-To build the **simEpics** python server you need to have `Conda <https://docs.conda.io/en/latest/miniconda.html>`_
+To build the **scanLib** python server you need to have `Conda <https://docs.conda.io/en/latest/miniconda.html>`_
 installed.
 
-Next, create a dedicated conda environment for simEpics by running::
+Next, create a dedicated conda environment for scanLib by running::
 
-    (base) $ conda create --name simepics python=3.9
+    (base) $ conda create --name scanlib python=3.9
 
 then::
 
-    (base) $ conda activate simepics
+    (base) $ conda activate scanlib
 
 and install the required python packages::
 
-    (simepics) $ pip install pvapy
-    (simepics) $ pip install pyepics
+    (scanlib) $ pip install pvapy
+    (scanlib) $ pip install pyepics
 
-Finally you can build **simEpics** with::
+Finally you can build **scanLib** with::
 
-    (simepics) $ cd ~/epics/synApps/support/simEpics/
-    (simepics) $ python setup.py install
+    (scanlib) $ cd ~/epics/synApps/support/scanLib/
+    (scanlib) $ python setup.py install
 
 To run the python server::
 
-    (simepics) $ python -i start_simepics.py
+    (scanlib) $ python -i start_scanlib.py
 
 
 

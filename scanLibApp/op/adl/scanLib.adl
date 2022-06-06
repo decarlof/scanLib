@@ -1,6 +1,6 @@
 
 file {
-	name="/home/beams/FAST/epics/synApps/support/simEpics/simEpicsApp/op/adl/simEpics.adl"
+	name="/home/beams/FAST/epics/synApps/support/scanLib/scanLibApp/op/adl/scanLib.adl"
 	version=030111
 }
 display {
@@ -119,7 +119,7 @@ text {
 	"basic attribute" {
 		clr=54
 	}
-	textix="SimEpics   $(P)$(R)"
+	textix="ScanLib   $(P)$(R)"
 	align="horiz. centered"
 }
 rectangle {
@@ -185,7 +185,7 @@ text {
 		height=20
 	}
 	monitor {
-		chan="$(P)$(R)SimEpicsStatus"
+		chan="$(P)$(R)ScanLibStatus"
 		clr=14
 		bclr=51
 	}
@@ -203,7 +203,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="SimEpics status"
+	textix="ScanLib status"
 }
 text {
 	object {
@@ -248,7 +248,7 @@ composite {
 			}
 			display[0] {
 				label="Epics PV Names"
-				name="simEpicsEPICS_PVs.adl"
+				name="scanLibEPICS_PVs.adl"
 				args="P=$(P), R=$(R)"
 			}
 			clr=14
@@ -314,7 +314,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="simEpicsPv6 float"
+	textix="scanLibPv6 float"
 	align="horiz. right"
 }
 text {
@@ -327,7 +327,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="simEpicsPv1 string"
+	textix="scanLibPv1 string"
 	align="horiz. right"
 }
 text {
@@ -340,7 +340,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="simEpicsPv2 float"
+	textix="scanLibPv2 float"
 	align="horiz. right"
 }
 text {
@@ -353,7 +353,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="simEpicsPv3 float"
+	textix="scanLibPv3 float"
 	align="horiz. right"
 }
 text {
@@ -366,7 +366,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="simEpicsPv4 float"
+	textix="scanLibPv4 float"
 	align="horiz. right"
 }
 text {
@@ -379,7 +379,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="simEpicsPv5 string"
+	textix="scanLibPv5 string"
 	align="horiz. right"
 }
 "text entry" {
@@ -390,7 +390,7 @@ text {
 		height=20
 	}
 	control {
-		chan="$(P)$(R)simEpicsPv2"
+		chan="$(P)$(R)scanLibPv2"
 		clr=14
 		bclr=51
 	}
@@ -406,7 +406,7 @@ text {
 		height=20
 	}
 	control {
-		chan="$(P)$(R)simEpicsPv1"
+		chan="$(P)$(R)scanLibPv1"
 		clr=14
 		bclr=51
 	}
@@ -422,7 +422,7 @@ text {
 		height=20
 	}
 	control {
-		chan="$(P)$(R)simEpicsPv4"
+		chan="$(P)$(R)scanLibPv4"
 		clr=14
 		bclr=51
 	}
@@ -438,7 +438,7 @@ text {
 		height=20
 	}
 	control {
-		chan="$(P)$(R)simEpicsPv5"
+		chan="$(P)$(R)scanLibPv5"
 		clr=14
 		bclr=51
 	}
@@ -454,7 +454,7 @@ text {
 		height=20
 	}
 	control {
-		chan="$(P)$(R)simEpicsPv6"
+		chan="$(P)$(R)scanLibPv6"
 		clr=14
 		bclr=51
 	}
@@ -470,7 +470,7 @@ text {
 		height=20
 	}
 	control {
-		chan="$(P)$(R)simEpicsPv3"
+		chan="$(P)$(R)scanLibPv3"
 		clr=14
 		bclr=51
 	}

@@ -1,6 +1,6 @@
-==========
-simEpics
-==========
+=======
+scanLib
+=======
 
 Content
 -------
@@ -11,4 +11,4 @@ Content
    about
    install
    usage
-   simEpicsApp
+   scanLibApp

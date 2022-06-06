@@ -1,35 +1,35 @@
-=============================
-simEpicsApp EPICS application
-=============================
+============================
+scanLibApp EPICS application
+============================
 
 .. 
    toctree::
    :hidden:
 
    amcntrols.template
-   simepics_settings.req
-   simepics.substitutions
+   scanlib_settings.req
+   scanlib.substitutions
 
 
-simEpics includes a complete example of an EPICS application, consisting of:
+scanLib includes a complete example of an EPICS application, consisting of:
 
-- A database file and corresponding autosave request file that contain the PVs required by the simepics.py base class.
+- A database file and corresponding autosave request file that contain the PVs required by the scanlib.py base class.
 - OPI screens for medm
 - An example IOC application that can be used to run the above databases.
   The databases are loaded in the IOC with the example substitutions file, 
-  :doc:`simEpics.substitutions`.
+  :doc:`scanLib.substitutions`.
 
 
 Base class files
 ================
-The following tables list all of the records in the simEpics.template file.
-These records are used by the simepics base class and so are required.
+The following tables list all of the records in the scanLib.template file.
+These records are used by the scanlib base class and so are required.
 
-simEpics.template
--------------------
+scanLib.template
+----------------
 
 This is the database file that contains only the PVs required by the amcontrol.py base class
-:doc:`simEpics.template`.
+:doc:`scanLib.template`.
 
 Camera PV Prefixes
 ------------------
@@ -72,46 +72,46 @@ AM served PVs
   * - Record name
     - Record type
     - Description
-  * - $(P)$(R)simEpicsPv1
+  * - $(P)$(R)scanLibPv1
     - stringout
     - Contains a string PV.
-  * - $(P)$(R)simEpicsPv1
+  * - $(P)$(R)scanLibPv1
     - ao
     - Contains a float PV.
-  * - $(P)$(R)simEpicsPv1
+  * - $(P)$(R)scanLibPv1
     - ao
     - Contains a float PV.
-  * - $(P)$(R)simEpicsPv1
+  * - $(P)$(R)scanLibPv1
     - ao
     - Contains a float PV.
-  * - $(P)$(R)simEpicsPv1
+  * - $(P)$(R)scanLibPv1
     - stringout
     - Contains a string PV.
-  * - $(P)$(R)simEpicsPv1
+  * - $(P)$(R)scanLibPv1
     - stringout
     - Contains a string PV.
 
 medm files
 ----------
 
-simEpics.adl
-^^^^^^^^^^^^^^
+scanLib.adl
+^^^^^^^^^^^
 
-The following is the MEDM screen :download:`simEpics.adl <../../simEpicsApp/op/adl/simEpics.adl>` during a scan. 
+The following is the MEDM screen :download:`scanLib.adl <../../scanLibApp/op/adl/scanLib.adl>` during a scan. 
 The status information is updating.
 
-.. image:: img/simEpics.png
+.. image:: img/scanLib.png
     :width: 75%
     :align: center
 
-simEpicsEPICS_PVs.adl
-^^^^^^^^^^^^^^^^^^^^^^^
+scanLibEPICS_PVs.adl
+^^^^^^^^^^^^^^^^^^^^
 
-The following is the MEDM screen :download:`simEpicsEPICS_PVs.adl <../../simEpicsApp/op/adl/simEpicsEPICS_PVs.adl>`. 
+The following is the MEDM screen :download:`scanLibEPICS_PVs.adl <../../scanLibApp/op/adl/scanLibEPICS_PVs.adl>`. 
 
-If these PVs are changed simEpics must be restarted.
+If these PVs are changed scanLib must be restarted.
 
-.. image:: img/simEpicsEPICS_PVs.png
+.. image:: img/scanLibEPICS_PVs.png
     :width: 75%
     :align: center
 
