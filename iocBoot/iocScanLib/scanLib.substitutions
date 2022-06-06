@@ -1,6 +1,6 @@
 file "$(TOP)/db/scanLib.template"
 {
 pattern
-{  P,        R,      CAMERA_PREFIX,   EXAMPLE_PV_NAME}
-{32id:, ScanLib:,    2bmbSP2:      32id:m1}
+{  P,        R,      TOMOSCAN_PREFIX,  INSITU_PV, SAMPLE_X, SAMPLE_Y}
+{2bmb:, ScanLib:,     2bmb:TomoScan:     2bm:m1,  2bmb:m63, 2bmb:m25}
 }

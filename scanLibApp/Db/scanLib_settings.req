@@ -7,33 +7,70 @@
 # but they are used by txmoptics.  
 # These PVs are not saved in the txmoptics configuration file.
 
-###############################
-# TomoScan, Camera  PV Prefixes 
-###############################
-$(P)$(R)CameraPVPrefix
+#############
+# PV Prefixes 
+#############
+$(P)$(R)TomoscanPVPrefix
+
+############################################
+# In-situ, sample X and Y translation motors
+############################################
+$(P)$(R)InsituPVName
+$(P)$(R)SampleXPVName
+$(P)$(R)SampleYPVName
+
+###################
+# Vertical scan PVs
+###################
+$(P)$(R)VerticalStart
+$(P)$(R)VerticalStepSize
+$(P)$(R)VerticalSteps
+
+#####################
+# Horizontal scan PVs
+#####################
+$(P)$(R)HorizontalStart
+$(P)$(R)HorizontalStepSize
+$(P)$(R)HorizontalSteps
 
 ##################
-# Example PV Names
+# In-situ scan PVs
 ##################
-$(P)$(R)ExamplePVName
+$(P)$(R)InsituStart
+$(P)$(R)InsituStepSize
+$(P)$(R)InsituSteps
 
-###############
-# Yes/No select
-###############
+#################
+# Energy scan PVs
+#################
+$(P)$(R)EnergyStart
+$(P)$(R)EnergyStepSize
+$(P)$(R)EnergySteps
+
+##################
+# Helical scan PVs
+##################
+$(P)$(R)PixelsYPer360Deg
+
+############
+# Scan Types
+############
+$(P)$(R)ScanType
+
+###########
+# Other PVs
+###########
+$(P)$(R)SleepTime
 $(P)$(R)YesNoSelect
 
-###############
-# AM served PVs
-###############
-$(P)$(R)scanLibPv1
-$(P)$(R)scanLibPv2
-$(P)$(R)scanLibPv3
-$(P)$(R)scanLibPv4
-$(P)$(R)scanLibPv5
-$(P)$(R)scanLibPv6
+#################################
+# Scan control via Channel Access
+#################################
+$(P)$(R)StartScan
+$(P)$(R)AbortScan
 
-##############################
-# AM status via Channel Access
-##############################
+################################
+# Scan status via Channel Access
+################################
 #controlPV $(P)$(R)ScanLibStatus
 #controlPV $(P)$(R)Watchdog

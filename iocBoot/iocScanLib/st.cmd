@@ -1,6 +1,6 @@
 < envPaths
 
-epicsEnvSet("P", "32id:")
+epicsEnvSet("P", "2bmb:")
 epicsEnvSet("R", "ScanLib:")
 
 ## Register all support components

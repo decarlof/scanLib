@@ -1,14 +1,14 @@
 
 file {
-	name="/home/beams/FAST/epics/synApps/support/scanLib/scanLibApp/op/adl/scanLib.adl"
+	name="/home/beams/FAST/epics/synApps/support/scanlib/scanLibApp/op/adl/scanLib.adl"
 	version=030111
 }
 display {
 	object {
-		x=215
-		y=1542
-		width=935
-		height=305
+		x=769
+		y=64
+		width=786
+		height=345
 	}
 	clr=14
 	bclr=4
@@ -91,7 +91,7 @@ rectangle {
 	object {
 		x=5
 		y=15
-		width=925
+		width=775
 		height=25
 	}
 	"basic attribute" {
@@ -126,7 +126,7 @@ rectangle {
 	object {
 		x=5
 		y=50
-		width=925
+		width=775
 		height=65
 	}
 	"basic attribute" {
@@ -134,36 +134,10 @@ rectangle {
 		fill="outline"
 	}
 }
-"choice button" {
-	object {
-		x=644
-		y=183
-		width=100
-		height=75
-	}
-	control {
-		chan="$(P)$(R)YesNoSelect.VAL"
-		clr=14
-		bclr=51
-	}
-}
-text {
-	object {
-		x=642
-		y=158
-		width=100
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Yes/No"
-	align="horiz. centered"
-}
 "text update" {
 	object {
-		x=526
-		y=84
+		x=376
+		y=90
 		width=100
 		height=20
 	}
@@ -179,7 +153,7 @@ text {
 }
 "text update" {
 	object {
-		x=526
+		x=376
 		y=60
 		width=400
 		height=20
@@ -195,7 +169,7 @@ text {
 }
 text {
 	object {
-		x=371
+		x=221
 		y=60
 		width=130
 		height=20
@@ -207,8 +181,8 @@ text {
 }
 text {
 	object {
-		x=392
-		y=84
+		x=242
+		y=90
 		width=130
 		height=20
 	}
@@ -217,69 +191,45 @@ text {
 	}
 	textix="Python server"
 }
-rectangle {
+"related display" {
 	object {
-		x=468
-		y=120
-		width=465
-		height=180
+		x=155
+		y=90
+		width=50
+		height=20
+	}
+	display[0] {
+		label="Epics PV Names"
+		name="scanLibEPICS_PVs.adl"
+		args="P=$(P), R=$(R)"
+	}
+	clr=14
+	bclr=51
+}
+text {
+	object {
+		x=10
+		y=90
+		width=140
+		height=20
 	}
 	"basic attribute" {
 		clr=14
-		fill="outline"
-		width=4
 	}
+	textix="Epics PV names"
 }
-composite {
+text {
 	object {
-		x=10
+		x=144
 		y=60
-		width=195
-		height=50
+		width=50
+		height=20
 	}
-	"composite name"=""
-	children {
-		"related display" {
-			object {
-				x=155
-				y=90
-				width=50
-				height=20
-			}
-			display[0] {
-				label="Epics PV Names"
-				name="scanLibEPICS_PVs.adl"
-				args="P=$(P), R=$(R)"
-			}
-			clr=14
-			bclr=51
-		}
-		text {
-			object {
-				x=10
-				y=90
-				width=140
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Epics PV names"
-		}
-		text {
-			object {
-				x=144
-				y=60
-				width=50
-				height=20
-			}
-			"basic attribute" {
-				clr=54
-			}
-			textix="Setup"
-			align="horiz. centered"
-		}
+	"basic attribute" {
+		clr=54
 	}
+	textix="Setup"
+	align="horiz. centered"
 }
 rectangle {
 	object {
@@ -302,181 +252,7 @@ text {
 	"basic attribute" {
 		clr=54
 	}
-	textix="AM served PVs"
-}
-text {
-	object {
-		x=169
-		y=275
-		width=160
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="scanLibPv6 float"
-	align="horiz. right"
-}
-text {
-	object {
-		x=159
-		y=150
-		width=170
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="scanLibPv1 string"
-	align="horiz. right"
-}
-text {
-	object {
-		x=69
-		y=175
-		width=260
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="scanLibPv2 float"
-	align="horiz. right"
-}
-text {
-	object {
-		x=69
-		y=200
-		width=260
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="scanLibPv3 float"
-	align="horiz. right"
-}
-text {
-	object {
-		x=39
-		y=225
-		width=290
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="scanLibPv4 float"
-	align="horiz. right"
-}
-text {
-	object {
-		x=169
-		y=250
-		width=160
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="scanLibPv5 string"
-	align="horiz. right"
-}
-"text entry" {
-	object {
-		x=334
-		y=175
-		width=120
-		height=20
-	}
-	control {
-		chan="$(P)$(R)scanLibPv2"
-		clr=14
-		bclr=51
-	}
-	format="string"
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=334
-		y=150
-		width=120
-		height=20
-	}
-	control {
-		chan="$(P)$(R)scanLibPv1"
-		clr=14
-		bclr=51
-	}
-	format="string"
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=334
-		y=225
-		width=120
-		height=20
-	}
-	control {
-		chan="$(P)$(R)scanLibPv4"
-		clr=14
-		bclr=51
-	}
-	format="string"
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=334
-		y=250
-		width=120
-		height=20
-	}
-	control {
-		chan="$(P)$(R)scanLibPv5"
-		clr=14
-		bclr=51
-	}
-	format="string"
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=334
-		y=275
-		width=120
-		height=20
-	}
-	control {
-		chan="$(P)$(R)scanLibPv6"
-		clr=14
-		bclr=51
-	}
-	format="string"
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=334
-		y=200
-		width=120
-		height=20
-	}
-	control {
-		chan="$(P)$(R)scanLibPv3"
-		clr=14
-		bclr=51
-	}
-	format="string"
-	limits {
-	}
+	textix="Scan Setting PVs"
 }
 text {
 	object {
@@ -494,12 +270,410 @@ rectangle {
 	object {
 		x=5
 		y=120
-		width=455
-		height=180
+		width=775
+		height=220
 	}
 	"basic attribute" {
 		clr=14
 		fill="outline"
 		width=5
 	}
+}
+text {
+	object {
+		x=15
+		y=208
+		width=250
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Horizontal (mm)"
+	align="horiz. right"
+}
+text {
+	object {
+		x=15
+		y=285
+		width=250
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Helical Pixel Y x 360 deg"
+	align="horiz. right"
+}
+text {
+	object {
+		x=15
+		y=260
+		width=250
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Energy (keV)"
+	align="horiz. right"
+}
+text {
+	object {
+		x=15
+		y=183
+		width=250
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Vertical (mm)"
+	align="horiz. right"
+}
+text {
+	object {
+		x=251
+		y=158
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Start"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=364
+		y=158
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Step size"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=509
+		y=158
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="# of steps"
+	align="horiz. centered"
+}
+"text entry" {
+	object {
+		x=266
+		y=183
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)$(R)VerticalStart"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=380
+		y=183
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)$(R)VerticalStepSize"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=526
+		y=183
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)$(R)VerticalSteps"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=266
+		y=208
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)$(R)HorizontalStart"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=380
+		y=208
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)$(R)HorizontalStepSize"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=526
+		y=208
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)$(R)HorizontalSteps"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=266
+		y=260
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)$(R)EnergyStart"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=380
+		y=260
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)$(R)EnergyStepSize"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=526
+		y=260
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)$(R)EnergySteps"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=266
+		y=285
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)$(R)PixelsYPer360Deg"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=527
+		y=90
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Scan type"
+	align="horiz. right"
+}
+menu {
+	object {
+		x=662
+		y=90
+		width=85
+		height=20
+	}
+	control {
+		chan="$(P)$(R)ScanType"
+		clr=14
+		bclr=51
+	}
+}
+"message button" {
+	object {
+		x=538
+		y=312
+		width=120
+		height=20
+	}
+	control {
+		chan="$(P)$(R)StartScan"
+		clr=14
+		bclr=15
+	}
+	label="Start Scan"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=650
+		y=312
+		width=120
+		height=20
+	}
+	control {
+		chan="$(P)$(R)AbortScan"
+		clr=14
+		bclr=20
+	}
+	label="Abort Scan"
+	press_msg="1"
+	release_msg="0"
+}
+text {
+	object {
+		x=14
+		y=310
+		width=250
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Sleep time (s)"
+	align="horiz. right"
+}
+"text entry" {
+	object {
+		x=265
+		y=310
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)$(R)SleepTime"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=15
+		y=235
+		width=250
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="In-situ"
+	align="horiz. right"
+}
+"text entry" {
+	object {
+		x=266
+		y=235
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)$(R)InsituStart"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=380
+		y=235
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)$(R)InsituStepSize"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=526
+		y=235
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)$(R)InsituSteps"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"choice button" {
+	object {
+		x=380
+		y=310
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)$(R)YesNoSelect.VAL"
+		clr=14
+		bclr=51
+	}
+	stacking="column"
 }

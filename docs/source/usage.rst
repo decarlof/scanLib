@@ -48,8 +48,8 @@ Start python server
     (scanlib) $ cd ~/epics/synApps/support/scanlib/iocBoot/iocScanLib
     (scanlib) $ python -i start_scanlib.py
 	configPVS:
-	CameraPVPrefix : 2bmbSP2:
-	ExamplePVName : 32id:m1
+	TomoscanPVPrefix : 2bmb:TomoScan:
+	InsituPVName : 32id:m1
 	YesNoSelect : Yes
 	scanLibPv1 : Unknown
 	scanLibPv2 : 500.00
@@ -79,4 +79,4 @@ Start python server
 Testing
 -------
 
-Pressing  Yes/No will run a callback that divide by 2 the value entered in the scanLibPv2 field
+...

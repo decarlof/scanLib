@@ -5,23 +5,158 @@
 # PV Prefixes 
 #############
 
-record(stringout, "$(P)$(R)CameraPVPrefix")
+record(stringout, "$(P)$(R)TomoscanPVPrefix")
 {
-   field(VAL,  "$(CAMERA_PREFIX)")
+   field(VAL,  "$(TOMOSCAN_PREFIX)")
 }
+
+############################################
+# In-situ, sample X and Y translation motors
+############################################
 
 ##################
 # Example PV Names
 ##################
 
-record(stringout, "$(P)$(R)ExamplePVName")
+record(stringout, "$(P)$(R)InsituPVName")
 {
-   field(VAL,  "$(EXAMPLE_PV_NAME)")
+   field(VAL,  "$(INSITU_PV)")
 }
 
-###############
-# Yes/No select
-###############
+record(stringout, "$(P)$(R)SampleXPVName")
+{
+   field(VAL,  "$(SAMPLE_X)")
+}
+
+record(stringout, "$(P)$(R)SampleYPVName")
+{
+   field(VAL,  "$(SAMPLE_Y)")
+}
+
+###################
+# Vertical scan PVs
+###################
+
+record(ao, "$(P)$(R)VerticalStart")
+{
+   field(PREC, "3")
+   field(EGU,  "mm")
+}
+
+record(ao, "$(P)$(R)VerticalStepSize")
+{
+   field(PREC, "3")
+   field(EGU,  "mm")
+}
+
+record(ao, "$(P)$(R)VerticalSteps")
+{
+   field(PREC, "3")
+}
+
+#####################
+# Horizontal scan PVs
+#####################
+
+record(ao, "$(P)$(R)HorizontalStart")
+{
+   field(PREC, "3")
+   field(EGU,  "mm")
+}
+
+record(ao, "$(P)$(R)HorizontalStepSize")
+{
+   field(PREC, "3")
+   field(EGU,  "mm")
+}
+
+record(ao, "$(P)$(R)HorizontalSteps")
+{
+   field(PREC, "3")
+}
+
+##################
+# In-situ scan PVs
+##################
+
+record(ao, "$(P)$(R)InsituStart")
+{
+   field(PREC, "3")
+   field(EGU,  "mm")
+}
+
+record(ao, "$(P)$(R)InsituStepSize")
+{
+   field(PREC, "3")
+   field(EGU,  "mm")
+}
+
+record(ao, "$(P)$(R)InsituSteps")
+{
+   field(PREC, "3")
+}
+
+#################
+# Energy scan PVs
+#################
+
+record(ao, "$(P)$(R)EnergyStart")
+{
+   field(PREC, "3")
+   field(EGU,  "keV")
+}
+
+record(ao, "$(P)$(R)EnergyStepSize")
+{
+   field(PREC, "3")
+   field(EGU,  "keV")
+}
+
+record(ao, "$(P)$(R)EnergySteps")
+{
+   field(PREC, "3")
+}
+
+##################
+# Helical scan PVs
+##################
+
+record(ao, "$(P)$(R)PixelsYPer360Deg")
+{
+   field(PREC, "3")
+}
+
+############
+# Scan Types
+############
+
+record(mbbo, "$(P)$(R)ScanType")
+{
+   field(ZRVL, "0")
+   field(ZRST, "Single")
+   field(ONVL, "1")
+   field(ONST, "Vertical")
+   field(TWVL, "2")
+   field(TWST, "Horizontal")
+   field(THVL, "3")
+   field(THST, "Mosaic")
+   field(FRVL, "4")
+   field(FRST, "File")
+   field(FVVL, "5")
+   field(FVST, "Energy")
+   field(SXVL, "6")
+   field(SXST, "Helical")
+}
+
+###########
+# Other PVs
+###########
+
+record(ao, "$(P)$(R)SleepTime")
+{
+   field(PREC, "3")
+   field(EGU,  "s")
+}
 
 record(mbbo, "$(P)$(R)YesNoSelect") {
   field(DTYP, "Raw Soft Channel")
@@ -32,46 +167,27 @@ record(mbbo, "$(P)$(R)YesNoSelect") {
   field(ONST, "No")
 }
 
-###############
-# AM served PVs
-###############
-
-record(stringout, "$(P)$(R)scanLibPv1")
+#################################
+# Scan control via Channel Access
+#################################
+record(busy,"$(P)$(R)StartScan")
 {
-   field(VAL,  "Unknown")
+   field(ZNAM,"Done")
+   field(ZSV, "NO_ALARM")
+   field(ONAM,"Acquire")
+   field(OSV, "MINOR")
+   field(VAL, "0")
 }
 
-record(ao, "$(P)$(R)scanLibPv2")
+record(bo,"$(P)$(R)AbortScan")
 {
-   field(PREC,  "2")
+   field(ZNAM,"No")
+   field(ONAM,"Yes")
 }
 
-record(ao, "$(P)$(R)scanLibPv3")
-{
-   field(PREC, "2")
-   field(EGU,  "microns")
-}
-
-record(ao, "$(P)$(R)scanLibPv4")
-{
-   field(PREC, "2")
-   field(EGU,  "microns")
-}
-
-record(stringout, "$(P)$(R)scanLibPv5")
-{
-   field(VAL,  "Unknown")
-}
-
-record(ao, "$(P)$(R)scanLibPv6")
-{
-   field(PREC, "2")
-   field(EGU,  "mm")
-}
-
-##############################
-# AM status via Channel Access
-##############################
+################################
+# Scan status via Channel Access
+################################
 
 record(waveform,"$(P)$(R)ScanLibStatus") 
 {

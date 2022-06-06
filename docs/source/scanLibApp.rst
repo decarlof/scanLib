@@ -11,7 +11,7 @@ scanLibApp EPICS application
    scanlib.substitutions
 
 
-scanLib includes a complete example of an EPICS application, consisting of:
+scanLib is an EPICS application, providing scan support to tomoScan. scanLib consisting of:
 
 - A database file and corresponding autosave request file that contain the PVs required by the scanlib.py base class.
 - OPI screens for medm
@@ -28,11 +28,11 @@ These records are used by the scanlib base class and so are required.
 scanLib.template
 ----------------
 
-This is the database file that contains only the PVs required by the amcontrol.py base class
+This is the database file that contains only the PVs required by the scanlib.py base class
 :doc:`scanLib.template`.
 
-Camera PV Prefixes
-------------------
+PV Prefixes
+-----------
 
 .. cssclass:: table-bordered table-striped table-hover
 .. list-table::
@@ -42,12 +42,12 @@ Camera PV Prefixes
   * - Record name
     - Record type
     - Description
-  * - $(P)$(R)CameraPVPrefix
+  * - $(P)$(R)TomoscanPVPrefix
     - stringout
-    - Contains the prefix for the detector, e.g. 2bmbSP2:
+    - Contains the prefix for the tomoScan, e.g. 2bmb:TomoScan:
 
-Example PV name
----------------
+PV names
+--------
 
 .. cssclass:: table-bordered table-striped table-hover
 .. list-table::
@@ -57,12 +57,18 @@ Example PV name
   * - Record name
     - Record type
     - Description
-  * - $(P)$(R)ExamplePVName
+  * - $(P)$(R)InsituPVName
     - stringout
-    - Contains a PV name, e.g. 32id:m1
+    - Contains the PV name controlling the in-situ enviroment parameter, e.g. 32id:m1
+  * - $(P)$(R)SampleXPVName
+    - stringout
+    - Contains the PV name for the horizontal motion, e.g. 2bmb:m63
+  * - $(P)$(R)SampleYPVName
+    - stringout
+    - Contains the PV name for the vertical motion, e.g. 2bmb:m25
 
-AM served PVs
-^^^^^^^^^^^^^
+ScanLib served PVs
+^^^^^^^^^^^^^^^^^^
 
 .. cssclass:: table-bordered table-striped table-hover
 .. list-table::
@@ -72,24 +78,51 @@ AM served PVs
   * - Record name
     - Record type
     - Description
-  * - $(P)$(R)scanLibPv1
+  * - $(P)$(R)VerticalStart
     - stringout
     - Contains a string PV.
-  * - $(P)$(R)scanLibPv1
+  * - $(P)$(R)VerticalStepSize
     - ao
     - Contains a float PV.
-  * - $(P)$(R)scanLibPv1
+  * - $(P)$(R)VerticalSteps
     - ao
     - Contains a float PV.
-  * - $(P)$(R)scanLibPv1
-    - ao
-    - Contains a float PV.
-  * - $(P)$(R)scanLibPv1
+  * - $(P)$(R)HorizontalStart
     - stringout
     - Contains a string PV.
-  * - $(P)$(R)scanLibPv1
+  * - $(P)$(R)HorizontalStepSize
+    - ao
+    - Contains a float PV.
+  * - $(P)$(R)HorizontalSteps
+    - ao
+    - Contains a float PV.
+  * - $(P)$(R)InsituStart
     - stringout
     - Contains a string PV.
+  * - $(P)$(R)InsituStepSize
+    - ao
+    - Contains a float PV.
+  * - $(P)$(R)InsituSteps
+    - ao
+    - Contains a float PV.
+  * - $(P)$(R)EnergyStart
+    - stringout
+    - Contains a string PV.
+  * - $(P)$(R)EnergyStepSize
+    - ao
+    - Contains a float PV.
+  * - $(P)$(R)EnergySteps
+    - ao
+    - Contains a float PV.
+  * - $(P)$(R)PixelsYPer360Deg
+    - ao
+    - Contains a float PV.
+  * - $(P)$(R)SleepTime
+    - ao
+    - Contains a float PV.
+  * - $(P)$(R)YesNoSelect
+    - mbbo
+    - Contains a float PV.
 
 medm files
 ----------
