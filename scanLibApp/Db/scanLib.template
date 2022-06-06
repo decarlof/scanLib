@@ -14,10 +14,6 @@ record(stringout, "$(P)$(R)TomoscanPVPrefix")
 # In-situ, sample X and Y translation motors
 ############################################
 
-##################
-# Example PV Names
-##################
-
 record(stringout, "$(P)$(R)InsituPVName")
 {
    field(VAL,  "$(INSITU_PV)")

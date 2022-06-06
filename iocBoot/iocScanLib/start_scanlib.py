@@ -3,4 +3,4 @@
 #     python -i start_scanlib.py
 # The -i is needed to keep Python running, otherwise it will create the object and exit
 from scanlib.scanlib import ScanLib
-ts = ScanLib(["../../db/scanLib_settings.req","../../db/scanLib_settings.req"], {"$(P)":"32id:", "$(R)":"ScanLib:"})
+ts = ScanLib(["../../db/scanLib_settings.req","../../db/scanLib_settings.req"], {"$(P)":"2bmb:", "$(R)":"ScanLib:"})

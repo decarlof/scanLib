@@ -25,6 +25,7 @@ class ScanLib():
     def __init__(self, pv_files, macros):
 
         # init pvs
+        self.scan_is_running = False
         self.config_pvs = {}
         self.control_pvs = {}
         self.pv_prefixes = {}
@@ -33,21 +34,60 @@ class ScanLib():
             pv_files = [pv_files]
         for pv_file in pv_files:
             self.read_pv_file(pv_file, macros)
-        self.show_pvs()
 
+        if 'SampleX' not in self.control_pvs:
+            log.error('SampleXPVName must be present in autoSettingsFile')
+            sys.exit()
+        if 'SampleY' not in self.control_pvs:
+            log.error('SampleYPVName must be present in autoSettingsFile')
+            sys.exit()
+        if 'Tomoscan' not in self.pv_prefixes:
+            log.error('TomoscanPVPrefix must be present in autoSettingsFile')
+            sys.exit()
+
+        self.show_pvs()
+        print('******************************')
+        print('******************************')
+        print(self.pv_prefixes)
+        print('******************************')
+        print('******************************')
+        # exit()
         # Define PVs we will need from the sample x-y-z motors, which is on another IOC
 
-        example_pv_name = self.control_pvs['Example'].pvname
-        self.control_pvs['ExamplePosition']      = PV(example_pv_name + '.VAL')
+        sample_x_pv_name = self.control_pvs['SampleX'].pvname
+        self.control_pvs['SampleX']      = PV(sample_x_pv_name + '.VAL')
+        sample_y_pv_name = self.control_pvs['SampleY'].pvname
+        self.control_pvs['SampleY']      = PV(sample_y_pv_name + '.VAL')
 
+        # Define PVs from the tomoScan IOC that we will need
+        tomoscan_prefix = self.pv_prefixes['Tomoscan']
 
-        # Define PVs from the camera IOC that we will need
-        prefix = self.pv_prefixes['Camera']
-        camera_prefix = prefix + 'cam1:'
-
-        self.control_pvs['CamAcquireTime']          = PV(camera_prefix + 'AcquireTime')
-        self.control_pvs['CamArraySizeXRBV']        = PV(camera_prefix + 'ArraySizeX_RBV')
-        self.control_pvs['CamArraySizeYRBV']        = PV(camera_prefix + 'ArraySizeY_RBV')
+        self.control_pvs['TSStartScan']             = PV(tomoscan_prefix + 'StartScan')
+        self.control_pvs['TSServerRunning']         = PV(tomoscan_prefix + 'ServerRunning')
+        self.control_pvs['TSScanStatus']            = PV(tomoscan_prefix + 'ScanStatus')
+        self.control_pvs['TSSampleName']            = PV(tomoscan_prefix + 'SampleName')
+        self.control_pvs['TSRotationStart']         = PV(tomoscan_prefix + 'RotationStart')  
+        self.control_pvs['TSRotationStep']          = PV(tomoscan_prefix + 'RotationStep')  
+        self.control_pvs['TSNumAngles']             = PV(tomoscan_prefix + 'NumAngles')  
+        self.control_pvs['TSReturnRotation']        = PV(tomoscan_prefix + 'ReturnRotation')  
+        self.control_pvs['TSNumDarkFields']         = PV(tomoscan_prefix + 'NumDarkFields')  
+        self.control_pvs['TSDarkFieldMode']         = PV(tomoscan_prefix + 'DarkFieldMode')  
+        self.control_pvs['TSDarkFieldValue']        = PV(tomoscan_prefix + 'DarkFieldValue')  
+        self.control_pvs['TSNumFlatFields']         = PV(tomoscan_prefix + 'NumFlatFields')
+        self.control_pvs['TSFlatFieldAxis']         = PV(tomoscan_prefix + 'FlatFieldAxis')
+        self.control_pvs['TSFlatFieldMode']         = PV(tomoscan_prefix + 'FlatFieldMode')
+        self.control_pvs['TSFlatFieldValue']        = PV(tomoscan_prefix + 'FlatFieldValue')  
+        self.control_pvs['TSFlatExposureTime']      = PV(tomoscan_prefix + 'FlatExposureTime')  
+        self.control_pvs['TSDifferentFlatExposure'] = PV(tomoscan_prefix + 'DifferentFlatExposure')
+        self.control_pvs['TSSampleInX']             = PV(tomoscan_prefix + 'SampleInX')
+        self.control_pvs['TSSampleOutX']            = PV(tomoscan_prefix + 'SampleOutX')  
+        self.control_pvs['TSSampleInY']             = PV(tomoscan_prefix + 'SampleInY')
+        self.control_pvs['TSSampleOutY']            = PV(tomoscan_prefix + 'SampleOutY')  
+        self.control_pvs['TSSampleOutAngleEnable']  = PV(tomoscan_prefix + 'SampleOutAngleEnable') 
+        self.control_pvs['TSSampleOutAngle']        = PV(tomoscan_prefix + 'SampleOutAngle')  
+        self.control_pvs['TSScanType']              = PV(tomoscan_prefix + 'ScanType')
+        self.control_pvs['TSFlipStitch']            = PV(tomoscan_prefix + 'FlipStitch')
+        self.control_pvs['TSExposureTime']          = PV(tomoscan_prefix + 'ExposureTime')
 
         self.epics_pvs = {**self.config_pvs, **self.control_pvs}
         
@@ -168,16 +208,16 @@ class ScanLib():
     def yes_no_select(self):
         """Plot the cross in imageJ.
         """
-
-        if (self.epics_pvs['YesNoSelect'].get() == 0):
-            sim_epics_pv2_value = self.epics_pvs['scanLibPv2'].get()
-            self.epics_pvs['scanLibPv1'].put('Hello World!')
-            self.epics_pvs['scanLibPv2'].put(sim_epics_pv2_value/2.0)
-            log.info('Yes/No set at %f' % sim_epics_pv2_value)
-            self.epics_pvs['ScanLibStatus'].put('divide by 2 scanLibPv2')
-        else:
-            sim_epics_pv2_value = self.epics_pvs['scanLibPv2'].get()
-            self.epics_pvs['scanLibPv1'].put('Hello APS!')
-            self.epics_pvs['scanLibPv2'].put(sim_epics_pv2_value*2.0)
-            log.info('Yes/No set at %f' % sim_epics_pv2_value)
-            self.epics_pvs['ScanLibStatus'].put('multiply by 2 scanLibPv2')
+        print('call back!')
+        # if (self.epics_pvs['YesNoSelect'].get() == 0):
+        #     sim_epics_pv2_value = self.epics_pvs['scanLibPv2'].get()
+        #     self.epics_pvs['scanLibPv1'].put('Hello World!')
+        #     self.epics_pvs['scanLibPv2'].put(sim_epics_pv2_value/2.0)
+        #     log.info('Yes/No set at %f' % sim_epics_pv2_value)
+        #     self.epics_pvs['ScanLibStatus'].put('divide by 2 scanLibPv2')
+        # else:
+        #     sim_epics_pv2_value = self.epics_pvs['scanLibPv2'].get()
+        #     self.epics_pvs['scanLibPv1'].put('Hello APS!')
+        #     self.epics_pvs['scanLibPv2'].put(sim_epics_pv2_value*2.0)
+        #     log.info('Yes/No set at %f' % sim_epics_pv2_value)
+        #     self.epics_pvs['ScanLibStatus'].put('multiply by 2 scanLibPv2')
