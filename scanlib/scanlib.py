@@ -48,7 +48,7 @@ class ScanLib():
         sample_x_pv_name                            = PV(tomoscan_prefix + 'SampleXPVName').value
         sample_y_pv_name                            = PV(tomoscan_prefix + 'SampleYPVName').value
         self.control_pvs['TSSampleX']               = PV(sample_x_pv_name)
-        self.control_pvs['TSSSampleY']              = PV(sample_y_pv_name)
+        self.control_pvs['TSSampleY']               = PV(sample_y_pv_name)
         self.control_pvs['TSStartScan']             = PV(tomoscan_prefix + 'StartScan')
         self.control_pvs['TSAbortScan']             = PV(tomoscan_prefix + 'AbortScan')
         self.control_pvs['TSServerRunning']         = PV(tomoscan_prefix + 'ServerRunning')
@@ -268,8 +268,6 @@ class ScanLib():
         
         scan_type = self.epics_pvs['ScanType'].get(as_string=True) 
         self.epics_pvs['TSScanType'].put(scan_type)
-        print(scan_type, ts_scan_type)
-        
         if self.epics_pvs['TSServerRunning'].get():
             if self.epics_pvs['TSScanStatus'].get(as_string=True) == 'Scan complete':
                 log.warning('%s scan start', scan_type)
@@ -279,7 +277,7 @@ class ScanLib():
                     tic =  time.time()
                     for ii in np.arange(0, sleep_steps, 1):
                         log.warning('sleep start scan %d/%d', ii, sleep_steps-1)
-                        scan(self)
+                        self.scan()
                         if (sleep_steps+1)!=(ii+1):
                             if (in_situ_select == 'Yes'):
                                 in_situ_set_value = in_situ_start + (ii) * in_situ_step_size
@@ -292,7 +290,7 @@ class ScanLib():
                     log.info('sleep scans time: %3.3f minutes', dtime)
                     log.warning('sleep scan end')
                 else:
-                    scan(args, ts_pvs)
+                    self.scan()
                 log.warning('%s scan end', scan_type)
                 self.epics_pvs['TSScanType'].put('Single', wait=True)
             else:
@@ -308,11 +306,11 @@ class ScanLib():
         scan_type = self.epics_pvs['ScanType'].get(as_string=True) 
 
         if (scan_type == 'Single'):
-            single_scan(self)
-        elif (scan_type == 'File'):
-            file_scan(self)   
-        elif (scan_type == 'Energy'):
-            energy_scan(self)        
+            self.single_scan()
+        elif (scan_type == 'Scan File'):
+            self.file_scan()   
+        elif (scan_type == 'Energy File'):
+            self.energy_scan()        
         elif (scan_type == 'Mosaic'):
             start_y = self.epics_pvs['VerticalStart'].get()
             step_size_y = self.epics_pvs['VerticalStepSize'].get()  
@@ -340,7 +338,7 @@ class ScanLib():
                     else:
                         pv_x = "TSSampleInX"
                     self.epics_pvs[pv_x].put(j, wait=True, timeout=600)
-                    single_scan(args, ts)
+                    self.single_scan()
             dtime = (time.time() - tic_01)/60.
             log.info('%s scan time: %3.3f minutes', scan_type, dtime)
         else:
@@ -357,17 +355,17 @@ class ScanLib():
             elif (scan_type == 'Vertical'):
                 start = self.epics_pvs['VerticalStart'].get()
                 step_size = self.epics_pvs['VerticalStepSize'].get()
-                steps = self.epics_pvs['VerticalSteps'].get()
+                steps = int(self.epics_pvs['VerticalSteps'].get())
                 end = start + (step_size * steps)
                 log.info('vertical positions (mm): %s', np.linspace(start, end, steps, endpoint=False))
                 if flat_field_axis in ('X') or flat_field_mode == 'None':
-                    pv = "TSSampleY"
+                    pv = "TSSampleY" ######
                 else:
                     pv = "TSSampleInY"
             for i in np.linspace(start, end, steps, endpoint=False):
                 log.warning('%s stage start position: %3.3f mm', pv, i)
                 self.epics_pvs[pv].put(i, wait=True, timeout=600)
-                single_scan(args, ts)
+                self.single_scan()
             dtime = (time.time() - tic_01)/60.
             log.info('%s scan time: %3.3f minutes', scan_type, dtime)
 
@@ -465,7 +463,7 @@ class ScanLib():
         # self.epics_pvs['TSScanType'].put('Single', wait=True)
 
 
-    def file_scan(args, ts):
+    def file_scan(self):
 
         tic_01 =  time.time()
         log.info('file scan start')
