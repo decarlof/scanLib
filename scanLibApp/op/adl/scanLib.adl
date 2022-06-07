@@ -853,7 +853,7 @@ rectangle {
 rectangle {
 	object {
 		x=100
-		y=232
+		y=233
 		width=530
 		height=25
 	}
