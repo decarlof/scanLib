@@ -12,12 +12,10 @@
 #############
 $(P)$(R)TomoscanPVPrefix
 
-############################################
-# In-situ, sample X and Y translation motors
-############################################
+#################
+# In-situ PV name
+#################
 $(P)$(R)InsituPVName
-$(P)$(R)SampleXPVName
-$(P)$(R)SampleYPVName
 
 ###################
 # Vertical scan PVs

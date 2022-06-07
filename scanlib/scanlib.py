@@ -46,22 +46,14 @@ class ScanLib():
             sys.exit()
 
         self.show_pvs()
-        print('******************************')
-        print('******************************')
-        print(self.pv_prefixes)
-        print('******************************')
-        print('******************************')
-        # exit()
-        # Define PVs we will need from the sample x-y-z motors, which is on another IOC
-
-        sample_x_pv_name = self.control_pvs['SampleX'].pvname
-        self.control_pvs['SampleX']      = PV(sample_x_pv_name + '.VAL')
-        sample_y_pv_name = self.control_pvs['SampleY'].pvname
-        self.control_pvs['SampleY']      = PV(sample_y_pv_name + '.VAL')
 
         # Define PVs from the tomoScan IOC that we will need
         tomoscan_prefix = self.pv_prefixes['Tomoscan']
 
+        sample_x_pv_name                            = PV(tomoscan_prefix + 'SampleXPVName').value
+        sample_y_pv_name                            = PV(tomoscan_prefix + 'SampleYPVName').value
+        self.control_pvs['TSSampleX']               = PV(sample_x_pv_name)
+        self.control_pvs['TSSSampleY']              = PV(sample_y_pv_name)
         self.control_pvs['TSStartScan']             = PV(tomoscan_prefix + 'StartScan')
         self.control_pvs['TSServerRunning']         = PV(tomoscan_prefix + 'ServerRunning')
         self.control_pvs['TSScanStatus']            = PV(tomoscan_prefix + 'ScanStatus')

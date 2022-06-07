@@ -10,23 +10,13 @@ record(stringout, "$(P)$(R)TomoscanPVPrefix")
    field(VAL,  "$(TOMOSCAN_PREFIX)")
 }
 
-############################################
-# In-situ, sample X and Y translation motors
-############################################
+#################
+# In-situ PV name
+#################
 
 record(stringout, "$(P)$(R)InsituPVName")
 {
    field(VAL,  "$(INSITU_PV)")
-}
-
-record(stringout, "$(P)$(R)SampleXPVName")
-{
-   field(VAL,  "$(SAMPLE_X)")
-}
-
-record(stringout, "$(P)$(R)SampleYPVName")
-{
-   field(VAL,  "$(SAMPLE_Y)")
 }
 
 ###################

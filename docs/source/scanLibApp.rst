@@ -60,12 +60,6 @@ PV names
   * - $(P)$(R)InsituPVName
     - stringout
     - Contains the PV name controlling the in-situ enviroment parameter, e.g. 32id:m1
-  * - $(P)$(R)SampleXPVName
-    - stringout
-    - Contains the PV name for the horizontal motion, e.g. 2bmb:m63
-  * - $(P)$(R)SampleYPVName
-    - stringout
-    - Contains the PV name for the vertical motion, e.g. 2bmb:m25
 
 ScanLib served PVs
 ^^^^^^^^^^^^^^^^^^

@@ -1,14 +1,14 @@
 
 file {
-	name="/home/beams/FAST/epics/synApps/support/scanlib/scanLibApp/op/adl/scanLibEPICS_PVs.adl"
+	name="/home/beams8/USER2BMB/epics/synApps/support/scanlib/iocBoot/iocScanLib/../../scanLibApp/op/adl/scanLibEPICS_PVs.adl"
 	version=030111
 }
 display {
 	object {
-		x=1129
-		y=137
+		x=1119
+		y=129
 		width=455
-		height=155
+		height=110
 	}
 	clr=14
 	bclr=4
@@ -115,7 +115,7 @@ rectangle {
 		x=5
 		y=45
 		width=445
-		height=105
+		height=55
 	}
 	"basic attribute" {
 		clr=14
@@ -154,7 +154,7 @@ text {
 text {
 	object {
 		x=10
-		y=125
+		y=75
 		width=200
 		height=20
 	}
@@ -167,68 +167,12 @@ text {
 "text entry" {
 	object {
 		x=220
-		y=125
+		y=75
 		width=225
 		height=20
 	}
 	control {
 		chan="$(P)$(R)InsituPVName"
-		clr=14
-		bclr=51
-	}
-	format="string"
-	limits {
-	}
-}
-text {
-	object {
-		x=100
-		y=75
-		width=110
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Sample X PV"
-}
-text {
-	object {
-		x=100
-		y=100
-		width=110
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Sample Y PV"
-}
-"text entry" {
-	object {
-		x=220
-		y=100
-		width=225
-		height=20
-	}
-	control {
-		chan="$(P)$(R)SampleYPVName"
-		clr=14
-		bclr=51
-	}
-	format="string"
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=220
-		y=75
-		width=225
-		height=20
-	}
-	control {
-		chan="$(P)$(R)SampleXPVName"
 		clr=14
 		bclr=51
 	}
