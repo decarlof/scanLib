@@ -77,9 +77,13 @@ record(ao, "$(P)$(R)InsituStepSize")
    field(EGU,  "mm")
 }
 
-record(ao, "$(P)$(R)InsituSteps")
-{
-   field(PREC, "3")
+record(mbbo, "$(P)$(R)InsituSelect") {
+  field(DTYP, "Raw Soft Channel")
+  field(NOBT, "3")
+  field(ZRVL, "0x0")
+  field(ONVL, "0x1")
+  field(ZRST, "Yes")
+  field(ONST, "No")
 }
 
 #################
@@ -146,7 +150,22 @@ record(ao, "$(P)$(R)SleepTime")
    field(EGU,  "s")
 }
 
-record(mbbo, "$(P)$(R)YesNoSelect") {
+record(ao, "$(P)$(R)SleepSteps")
+{
+   field(PREC, "3")
+   field(EGU,  "s")
+}
+
+record(mbbo, "$(P)$(R)SleepSelect") {
+  field(DTYP, "Raw Soft Channel")
+  field(NOBT, "3")
+  field(ZRVL, "0x0")
+  field(ONVL, "0x1")
+  field(ZRST, "Yes")
+  field(ONST, "No")
+}
+
+record(mbbo, "$(P)$(R)TestingSelect") {
   field(DTYP, "Raw Soft Channel")
   field(NOBT, "3")
   field(ZRVL, "0x0")

@@ -1,12 +1,12 @@
 
 file {
-	name="/home/beams/FAST/epics/synApps/support/scanlib/scanLibApp/op/adl/scanLib.adl"
+	name="/home/beams8/USER2BMB/epics/synApps/support/scanlib/iocBoot/iocScanLib/../../scanLibApp/op/adl/scanLib.adl"
 	version=030111
 }
 display {
 	object {
-		x=769
-		y=64
+		x=1038
+		y=83
 		width=786
 		height=345
 	}
@@ -111,7 +111,7 @@ rectangle {
 }
 text {
 	object {
-		x=322
+		x=10
 		y=15
 		width=300
 		height=25
@@ -294,8 +294,8 @@ text {
 }
 text {
 	object {
-		x=15
-		y=285
+		x=14
+		y=310
 		width=250
 		height=20
 	}
@@ -303,19 +303,6 @@ text {
 		clr=14
 	}
 	textix="Helical Pixel Y x 360 deg"
-	align="horiz. right"
-}
-text {
-	object {
-		x=15
-		y=260
-		width=250
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Energy (keV)"
 	align="horiz. right"
 }
 text {
@@ -462,53 +449,8 @@ text {
 }
 "text entry" {
 	object {
-		x=266
-		y=260
-		width=100
-		height=20
-	}
-	control {
-		chan="$(P)$(R)EnergyStart"
-		clr=14
-		bclr=51
-	}
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=380
-		y=260
-		width=100
-		height=20
-	}
-	control {
-		chan="$(P)$(R)EnergyStepSize"
-		clr=14
-		bclr=51
-	}
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=526
-		y=260
-		width=100
-		height=20
-	}
-	control {
-		chan="$(P)$(R)EnergySteps"
-		clr=14
-		bclr=51
-	}
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=266
-		y=285
+		x=265
+		y=310
 		width=100
 		height=20
 	}
@@ -537,7 +479,7 @@ menu {
 	object {
 		x=662
 		y=90
-		width=85
+		width=100
 		height=20
 	}
 	control {
@@ -579,36 +521,8 @@ menu {
 }
 text {
 	object {
-		x=14
-		y=310
-		width=250
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Sleep time (s)"
-	align="horiz. right"
-}
-"text entry" {
-	object {
-		x=265
-		y=310
-		width=100
-		height=20
-	}
-	control {
-		chan="$(P)$(R)SleepTime"
-		clr=14
-		bclr=51
-	}
-	limits {
-	}
-}
-text {
-	object {
 		x=15
-		y=235
+		y=285
 		width=250
 		height=20
 	}
@@ -621,7 +535,7 @@ text {
 "text entry" {
 	object {
 		x=266
-		y=235
+		y=285
 		width=100
 		height=20
 	}
@@ -636,7 +550,7 @@ text {
 "text entry" {
 	object {
 		x=380
-		y=235
+		y=285
 		width=100
 		height=20
 	}
@@ -648,15 +562,126 @@ text {
 	limits {
 	}
 }
-"text entry" {
+composite {
 	object {
-		x=526
+		x=15
 		y=235
+		width=611
+		height=20
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=15
+				y=235
+				width=250
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Energy (keV)"
+			align="horiz. right"
+		}
+		"text entry" {
+			object {
+				x=266
+				y=235
+				width=100
+				height=20
+			}
+			control {
+				chan="$(P)$(R)EnergyStart"
+				clr=14
+				bclr=51
+			}
+			limits {
+			}
+		}
+		"text entry" {
+			object {
+				x=380
+				y=235
+				width=100
+				height=20
+			}
+			control {
+				chan="$(P)$(R)EnergyStepSize"
+				clr=14
+				bclr=51
+			}
+			limits {
+			}
+		}
+		"text entry" {
+			object {
+				x=526
+				y=235
+				width=100
+				height=20
+			}
+			control {
+				chan="$(P)$(R)EnergySteps"
+				clr=14
+				bclr=51
+			}
+			limits {
+			}
+		}
+	}
+}
+text {
+	object {
+		x=14
+		y=260
+		width=250
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Sleep time (s)"
+	align="horiz. right"
+}
+"choice button" {
+	object {
+		x=265
+		y=260
 		width=100
 		height=20
 	}
 	control {
-		chan="$(P)$(R)InsituSteps"
+		chan="$(P)$(R)SleepSelect.VAL"
+		clr=14
+		bclr=51
+	}
+	stacking="column"
+}
+"text entry" {
+	object {
+		x=380
+		y=260
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)$(R)SleepTime"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=525
+		y=260
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)$(R)SleepSteps"
 		clr=14
 		bclr=51
 	}
@@ -665,13 +690,40 @@ text {
 }
 "choice button" {
 	object {
-		x=380
-		y=310
+		x=525
+		y=285
 		width=100
 		height=20
 	}
 	control {
-		chan="$(P)$(R)YesNoSelect.VAL"
+		chan="$(P)$(R)InsituSelect.VAL"
+		clr=14
+		bclr=51
+	}
+	stacking="column"
+}
+text {
+	object {
+		x=419
+		y=18
+		width=250
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Testing"
+	align="horiz. right"
+}
+"choice button" {
+	object {
+		x=670
+		y=18
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)$(R)TestingSelect.VAL"
 		clr=14
 		bclr=51
 	}

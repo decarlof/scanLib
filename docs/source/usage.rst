@@ -50,7 +50,7 @@ Start python server
 	configPVS:
 	TomoscanPVPrefix : 2bmb:TomoScan:
 	InsituPVName : 32id:m1
-	YesNoSelect : Yes
+	SleepSelect : Yes
 	scanLibPv1 : Unknown
 	scanLibPv2 : 500.00
 	scanLibPv3 : 0

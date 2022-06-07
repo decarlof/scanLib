@@ -36,7 +36,7 @@ $(P)$(R)HorizontalSteps
 ##################
 $(P)$(R)InsituStart
 $(P)$(R)InsituStepSize
-$(P)$(R)InsituSteps
+$(P)$(R)InsituSelect
 
 #################
 # Energy scan PVs
@@ -59,7 +59,9 @@ $(P)$(R)ScanType
 # Other PVs
 ###########
 $(P)$(R)SleepTime
-$(P)$(R)YesNoSelect
+$(P)$(R)SleepSteps
+$(P)$(R)SleepSelect
+$(P)$(R)TestingSelect
 
 #################################
 # Scan control via Channel Access
