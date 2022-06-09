@@ -10,13 +10,28 @@ record(stringout, "$(P)$(R)TomoscanPVPrefix")
    field(VAL,  "$(TOMOSCAN_PREFIX)")
 }
 
-#################
-# In-situ PV name
-#################
+############
+# Scan Types
+############
 
-record(stringout, "$(P)$(R)InsituPVName")
+record(mbbo, "$(P)$(R)ScanType")
 {
-   field(VAL,  "$(INSITU_PV)")
+   field(ZRVL, "0")
+   field(ZRST, "Single")
+   field(ONVL, "1")
+   field(ONST, "Vertical")
+   field(TWVL, "2")
+   field(TWST, "Horizontal")
+   field(THVL, "3")
+   field(THST, "Mosaic")
+   field(FRVL, "4")
+   field(FRST, "Scan File")
+   field(FVVL, "5")
+   field(FVST, "Energy")
+   field(SXVL, "6")
+   field(SXST, "Energy File")
+   field(SVVL, "7")
+   field(SVST, "Helical")
 }
 
 ###################
@@ -61,6 +76,91 @@ record(ao, "$(P)$(R)HorizontalSteps")
    field(PREC, "3")
 }
 
+###########
+# Scan file
+###########
+
+record(stringout, "$(P)$(R)ScanFileName") 
+{
+   field(VAL,  "Unknown")
+}
+
+record(bo, "$(P)$(R)ScanFileOK")
+{
+   field(ZNAM, "No")
+   field(ONAM, "Yes")
+}
+
+#################
+# Energy scan PVs
+#################
+
+record(ao, "$(P)$(R)EnergyStart")
+{
+   field(PREC, "3")
+   field(EGU,  "keV")
+}
+
+record(ao, "$(P)$(R)EnergyStepSize")
+{
+   field(PREC, "3")
+   field(EGU,  "keV")
+}
+
+record(ao, "$(P)$(R)EnergySteps")
+{
+   field(PREC, "3")
+}
+
+#############
+# Energy file
+#############
+
+record(stringout, "$(P)$(R)EnergyFileName") 
+{
+   field(VAL,  "Unknown")
+}
+
+record(bo, "$(P)$(R)EnergyFileOK")
+{
+   field(ZNAM, "No")
+   field(ONAM, "Yes")
+}
+
+#######
+# Sleep
+#######
+
+record(ao, "$(P)$(R)SleepTime")
+{
+   field(PREC, "3")
+   field(EGU,  "s")
+}
+
+record(ao, "$(P)$(R)SleepSteps")
+{
+   field(PREC, "3")
+   field(EGU,  "s")
+}
+
+record(mbbo, "$(P)$(R)SleepSelect") {
+  field(DTYP, "Raw Soft Channel")
+  field(NOBT, "3")
+  field(ZRVL, "0x0")
+  field(ONVL, "0x1")
+  field(ZRST, "Yes")
+  field(ONST, "No")
+}
+
+#################
+# In-situ PV name
+#################
+
+record(stringout, "$(P)$(R)InsituPVName")
+{
+   field(VAL,  "$(INSITU_PV)")
+}
+
 ##################
 # In-situ scan PVs
 ##################
@@ -86,27 +186,6 @@ record(mbbo, "$(P)$(R)InsituSelect") {
   field(ONST, "No")
 }
 
-#################
-# Energy scan PVs
-#################
-
-record(ao, "$(P)$(R)EnergyStart")
-{
-   field(PREC, "3")
-   field(EGU,  "keV")
-}
-
-record(ao, "$(P)$(R)EnergyStepSize")
-{
-   field(PREC, "3")
-   field(EGU,  "keV")
-}
-
-record(ao, "$(P)$(R)EnergySteps")
-{
-   field(PREC, "3")
-}
-
 ##################
 # Helical scan PVs
 ##################
@@ -116,54 +195,9 @@ record(ao, "$(P)$(R)PixelsYPer360Deg")
    field(PREC, "3")
 }
 
-############
-# Scan Types
-############
-
-record(mbbo, "$(P)$(R)ScanType")
-{
-   field(ZRVL, "0")
-   field(ZRST, "Single")
-   field(ONVL, "1")
-   field(ONST, "Vertical")
-   field(TWVL, "2")
-   field(TWST, "Horizontal")
-   field(THVL, "3")
-   field(THST, "Mosaic")
-   field(FRVL, "4")
-   field(FRST, "Scan File")
-   field(FVVL, "5")
-   field(FVST, "Energy")
-   field(SXVL, "6")
-   field(SXST, "Energy File")
-   field(SVVL, "7")
-   field(SVST, "Helical")
-}
-
 ###########
 # Other PVs
 ###########
-
-record(ao, "$(P)$(R)SleepTime")
-{
-   field(PREC, "3")
-   field(EGU,  "s")
-}
-
-record(ao, "$(P)$(R)SleepSteps")
-{
-   field(PREC, "3")
-   field(EGU,  "s")
-}
-
-record(mbbo, "$(P)$(R)SleepSelect") {
-  field(DTYP, "Raw Soft Channel")
-  field(NOBT, "3")
-  field(ZRVL, "0x0")
-  field(ONVL, "0x1")
-  field(ZRST, "Yes")
-  field(ONST, "No")
-}
 
 record(mbbo, "$(P)$(R)TestingSelect") {
   field(DTYP, "Raw Soft Channel")

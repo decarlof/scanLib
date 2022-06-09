@@ -12,10 +12,10 @@
 #############
 $(P)$(R)TomoscanPVPrefix
 
-#################
-# In-situ PV name
-#################
-$(P)$(R)InsituPVName
+############
+# Scan Types
+############
+$(P)$(R)ScanType
 
 ###################
 # Vertical scan PVs
@@ -31,12 +31,11 @@ $(P)$(R)HorizontalStart
 $(P)$(R)HorizontalStepSize
 $(P)$(R)HorizontalSteps
 
-##################
-# In-situ scan PVs
-##################
-$(P)$(R)InsituStart
-$(P)$(R)InsituStepSize
-$(P)$(R)InsituSelect
+###########
+# Scan file
+###########
+$(P)$(R)ScanFileName
+$(P)$(R)ScanFileOK
 
 #################
 # Energy scan PVs
@@ -45,22 +44,39 @@ $(P)$(R)EnergyStart
 $(P)$(R)EnergyStepSize
 $(P)$(R)EnergySteps
 
+#############
+# Energy file
+#############
+$(P)$(R)EnergyFileName
+$(P)$(R)EnergyFileOK
+
+#######
+# Sleep
+#######
+$(P)$(R)SleepTime
+$(P)$(R)SleepSteps
+$(P)$(R)SleepSelect
+
+#################
+# In-situ PV name
+#################
+$(P)$(R)InsituPVName
+
+##################
+# In-situ scan PVs
+##################
+$(P)$(R)InsituStart
+$(P)$(R)InsituStepSize
+$(P)$(R)InsituSelect
+
 ##################
 # Helical scan PVs
 ##################
 $(P)$(R)PixelsYPer360Deg
 
-############
-# Scan Types
-############
-$(P)$(R)ScanType
-
 ###########
 # Other PVs
 ###########
-$(P)$(R)SleepTime
-$(P)$(R)SleepSteps
-$(P)$(R)SleepSelect
 $(P)$(R)TestingSelect
 
 #################################

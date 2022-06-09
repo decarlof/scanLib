@@ -82,15 +82,12 @@ class ScanLib():
         time.sleep(1)
         self.check_pvs_connected()
 
-        # Configure callbacks on a few PVs
-        for epics_pv in ('StartScan', 'AbortScan'):
-            self.epics_pvs[epics_pv].add_callback(self.pv_callback)
         # Set some initial PV values
         for epics_pv in ('StartScan', 'AbortScan'):
             self.epics_pvs[epics_pv].put(0)
 
-        # print(self.epics_pvs)
-        for epics_pv in ('SleepSelect', ):
+        # Configure callbacks on a few PVs
+        for epics_pv in ('StartScan', 'AbortScan', 'SleepSelect', 'ScanFileName', "EnergyFileName"):
             self.epics_pvs[epics_pv].add_callback(self.pv_callback)
 
         # Start the watchdog timer thread
@@ -224,11 +221,40 @@ class ScanLib():
         """
 
         log.debug('pv_callback pvName=%s, value=%s, char_value=%s', pvname, value, char_value)
-        if (pvname.find('StartScan') != -1) and (value == 1):
+        if pvname.find('ScanFileName') != -1:
+            thread = threading.Thread(target=self.set_scan_file_name, args=())
+            thread.start()
+        elif pvname.find('EnergyFileName') != -1:
+            thread = threading.Thread(target=self.set_energy_file_name, args=())
+            thread.start()
+        elif (pvname.find('StartScan') != -1) and (value == 1):
             self.run_scans()
         elif (pvname.find('AbortScan') != -1) and (value == 1):
             self.abort_scan()
 
+    def set_scan_file_name(self):
+        """Copies the file plugin FilePathExists_RBV PV to FilePathExists"""
+
+        fname = self.epics_pvs['ScanFileName'].value
+        if (os.path.isfile(fname)):
+            self.epics_pvs['ScanFileOK'].put(1)
+            self.epics_pvs['ScanLibStatus'].put('File ' + fname + ' exists')
+        else:
+            self.epics_pvs['ScanLibStatus'].put('Error: Scan file ' + fname + ' does not exist')
+            self.epics_pvs['ScanFileOK'].put(0)
+            log.error('Error: Scan file %s does not exist.' % fname)
+
+    def set_energy_file_name(self):
+        """Copies the file plugin FilePathExists_RBV PV to FilePathExists"""
+
+        fname = self.epics_pvs['EnergyFileName'].value
+        if (os.path.isfile(fname)):
+            self.epics_pvs['EnergyFileOK'].put(1)
+            self.epics_pvs['ScanLibStatus'].put('File ' + fname + ' exists')
+        else:
+            self.epics_pvs['ScanLibStatus'].put('Error: Energy file ' + fname + ' does not exist')
+            self.epics_pvs['EnergyFileOK'].put(0)
+            log.error('Error: Energy file %s does not exist.' % fname)
 
     def abort_scan(self):
         """Aborts a scan that is running and performs the operations 
