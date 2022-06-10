@@ -265,7 +265,7 @@ class ScanLib():
             self.epics_pvs['EnergyFileOK'].put(1)
             self.epics_pvs['ScanLibStatus'].put(fname + ' exists')
         else:
-            self.epics_pvs['ScanLibStatus'].put('Error: Energy file ' + fname + ' does not exist')
+            self.epics_pvs['ScanLibStatus'].put('Energy file does not exist')
             self.epics_pvs['EnergyFileOK'].put(0)
             log.error('Error: Energy file %s does not exist.' % fname)
 
