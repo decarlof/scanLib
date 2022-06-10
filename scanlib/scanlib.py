@@ -233,7 +233,7 @@ class ScanLib():
             self.abort_scan()
 
     def set_scan_file_name(self):
-        """Copies the file plugin FilePathExists_RBV PV to FilePathExists"""
+        """Check the scan file exists and is correctly formatted"""
 
         self.fsname = self.epics_pvs['ScanFileName'].value
         print(self.fsname, os.path.isfile(self.fsname))
@@ -258,7 +258,7 @@ class ScanLib():
             log.error('Error: Scan file %s does not exist.' % self.fsname)
 
     def set_energy_file_name(self):
-        """Copies the file plugin FilePathExists_RBV PV to FilePathExists"""
+        """Check the energy file exists and is correctly formatted"""
 
         fname = self.epics_pvs['EnergyFileName'].value
         if (os.path.isfile(fname)):
