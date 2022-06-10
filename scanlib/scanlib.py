@@ -239,10 +239,11 @@ class ScanLib():
         print(self.fsname, os.path.isfile(self.fsname))
         if (os.path.isfile(self.fsname)):
             self.epics_pvs['ScanFileOK'].put(1)
-            self.epics_pvs['ScanLibStatus'].put('File ' + self.fsname + ' exists')
+            self.epics_pvs['ScanLibStatus'].put(self.fsname + ' exists')
             try:
                 with open(self.fsname) as json_file:
                     scan_dict = json.load(json_file)
+                self.epics_pvs['ScanLibStatus'].put('JSON File formatting OK')
             except FileNotFoundError:
                 log.error('File %s not found', self.fsname)
                 self.epics_pvs['ScanFileOK'].put(0)
@@ -252,7 +253,7 @@ class ScanLib():
                 self.epics_pvs['ScanLibStatus'].put('JSON File formatting error')
                 self.epics_pvs['ScanFileOK'].put(0)
         else:
-            self.epics_pvs['ScanLibStatus'].put('Error: Scan file ' + self.fsname + ' does not exist')
+            self.epics_pvs['ScanLibStatus'].put('Scan file does not exist')
             self.epics_pvs['ScanFileOK'].put(0)
             log.error('Error: Scan file %s does not exist.' % self.fsname)
 
@@ -262,7 +263,7 @@ class ScanLib():
         fname = self.epics_pvs['EnergyFileName'].value
         if (os.path.isfile(fname)):
             self.epics_pvs['EnergyFileOK'].put(1)
-            self.epics_pvs['ScanLibStatus'].put('File ' + fname + ' exists')
+            self.epics_pvs['ScanLibStatus'].put(fname + ' exists')
         else:
             self.epics_pvs['ScanLibStatus'].put('Error: Energy file ' + fname + ' does not exist')
             self.epics_pvs['EnergyFileOK'].put(0)
