@@ -45,10 +45,13 @@ class ScanLib():
         # Define PVs from the tomoScan IOC that we will need
         tomoscan_prefix = self.pv_prefixes['Tomoscan']
 
+        # is better to remove this to avoid a dependency on having the tomoscan IOC up.
+        # Best is to pass the sampleX/Y PVs as scanLib epics PV names.
+        
         sample_x_pv_name                            = PV(tomoscan_prefix + 'SampleXPVName').value
         sample_y_pv_name                            = PV(tomoscan_prefix + 'SampleYPVName').value
-        # self.control_pvs['TSSampleX']               = PV(sample_x_pv_name)
-        # self.control_pvs['TSSampleY']               = PV(sample_y_pv_name)
+        self.control_pvs['TSSampleX']               = PV(sample_x_pv_name)
+        self.control_pvs['TSSampleY']               = PV(sample_y_pv_name)
         self.control_pvs['TSStartScan']             = PV(tomoscan_prefix + 'StartScan')
         self.control_pvs['TSAbortScan']             = PV(tomoscan_prefix + 'AbortScan')
         self.control_pvs['TSServerRunning']         = PV(tomoscan_prefix + 'ServerRunning')
