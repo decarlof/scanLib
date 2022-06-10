@@ -47,8 +47,8 @@ class ScanLib():
 
         sample_x_pv_name                            = PV(tomoscan_prefix + 'SampleXPVName').value
         sample_y_pv_name                            = PV(tomoscan_prefix + 'SampleYPVName').value
-        self.control_pvs['TSSampleX']               = PV(sample_x_pv_name)
-        self.control_pvs['TSSampleY']               = PV(sample_y_pv_name)
+        # self.control_pvs['TSSampleX']               = PV(sample_x_pv_name)
+        # self.control_pvs['TSSampleY']               = PV(sample_y_pv_name)
         self.control_pvs['TSStartScan']             = PV(tomoscan_prefix + 'StartScan')
         self.control_pvs['TSAbortScan']             = PV(tomoscan_prefix + 'AbortScan')
         self.control_pvs['TSServerRunning']         = PV(tomoscan_prefix + 'ServerRunning')
@@ -235,14 +235,26 @@ class ScanLib():
     def set_scan_file_name(self):
         """Copies the file plugin FilePathExists_RBV PV to FilePathExists"""
 
-        fname = self.epics_pvs['ScanFileName'].value
-        if (os.path.isfile(fname)):
+        self.fsname = self.epics_pvs['ScanFileName'].value
+        print(self.fsname, os.path.isfile(self.fsname))
+        if (os.path.isfile(self.fsname)):
             self.epics_pvs['ScanFileOK'].put(1)
-            self.epics_pvs['ScanLibStatus'].put('File ' + fname + ' exists')
+            self.epics_pvs['ScanLibStatus'].put('File ' + self.fsname + ' exists')
+            try:
+                with open(self.fsname) as json_file:
+                    scan_dict = json.load(json_file)
+            except FileNotFoundError:
+                log.error('File %s not found', self.fsname)
+                self.epics_pvs['ScanFileOK'].put(0)
+                self.epics_pvs['ScanLibStatus'].put('File error')
+            except:
+                log.error('File %s is not correcly formatted', self.fsname)
+                self.epics_pvs['ScanLibStatus'].put('JSON File formatting error')
+                self.epics_pvs['ScanFileOK'].put(0)
         else:
-            self.epics_pvs['ScanLibStatus'].put('Error: Scan file ' + fname + ' does not exist')
+            self.epics_pvs['ScanLibStatus'].put('Error: Scan file ' + self.fsname + ' does not exist')
             self.epics_pvs['ScanFileOK'].put(0)
-            log.error('Error: Scan file %s does not exist.' % fname)
+            log.error('Error: Scan file %s does not exist.' % self.fsname)
 
     def set_energy_file_name(self):
         """Copies the file plugin FilePathExists_RBV PV to FilePathExists"""
@@ -334,7 +346,7 @@ class ScanLib():
         if (scan_type == 'Single'):
             self.single_scan()
         elif (scan_type == 'Scan File'):
-            self.file_scan()   
+            self.file_scan(self.fsname)   
         elif (scan_type == 'Energy File'):
             self.energy_scan()        
         elif (scan_type == 'Mosaic'):
@@ -488,69 +500,60 @@ class ScanLib():
         # log.info('energy scan time: %3.3f minutes', dtime)
         # self.epics_pvs['TSScanType'].put('Single', wait=True)
 
-
-    def file_scan(self):
+    def file_scan(self, fname):
 
         tic_01 =  time.time()
         log.info('file scan start')
-        # # need to handle file name passing
-        # try:
-        #     with open(args.scan_file) as json_file:
-        #         scan_dict = json.load(json_file)
-        # except FileNotFoundError:
-        #     log.error('File %s not found', args.scan_file)
-        #     exit()
-        # except:
-        #     log.error('File %s is not correcly formatted', args.scan_file)
-        #     exit()
-        # flat_field_axis = self.epics_pvs['TSFlatFieldAxis'].get(as_string=True)
-        # flat_field_mode = self.epics_pvs['TSFlatFieldMode'].get(as_string=True)
+        # need to handle file name passing
 
-        # for key, value in scan_dict.items():
+        if self.epics_pvs['ScanFileOK'].get() == 1:
+            flat_field_axis = self.epics_pvs['TSFlatFieldAxis'].get(as_string=True)
+            flat_field_mode = self.epics_pvs['TSFlatFieldMode'].get(as_string=True)
 
+            for key, value in scan_dict.items():
 
-        #     self.epics_pvs['TSSampleX'].put(value['SampleX'], wait=True)
-        #     self.epics_pvs['TSSampleY'].put(value['SampleY'], wait=True)
-        #     self.epics_pvs['TSRotationStart'].put(value['RotationStart'], wait=True) 
-        #     self.epics_pvs['TSRotationStep'].put(value['RotationStep'], wait=True)
-        #     self.epics_pvs['TSNumAngles'].put(value['NumAngles'], wait=True) 
-        #     self.epics_pvs['TSReturnRotation'].put(value['ReturnRotation'], wait=True) 
-        #     self.epics_pvs['TSNumDarkFields'].put(value['NumDarkFields'], wait=True) 
-        #     self.epics_pvs['TSDarkFieldMode'].put(value['DarkFieldMode'], wait=True) 
-        #     self.epics_pvs['TSDarkFieldValue'].put(value['DarkFieldValue'], wait=True) 
-        #     self.epics_pvs['TSNumFlatFields'].put(value['NumFlatFields'], wait=True) 
-        #     self.epics_pvs['TSFlatFieldAxis'].put(value['FlatFieldAxis'], wait=True) 
-        #     self.epics_pvs['TSFlatFieldMode'].put(value['FlatFieldMode'], wait=True) 
-        #     self.epics_pvs['TSFlatFieldValue'].put(value['FlatFieldValue'], wait=True) 
-        #     self.epics_pvs['TSFlatExposureTime'].put(value['FlatExposureTime'], wait=True) 
-        #     self.epics_pvs['TSDifferentFlatExposure'].put(value['DifferentFlatExposure'], wait=True) 
-        #     self.epics_pvs['TSSampleInX'].put(value['SampleInX'], wait=True) 
-        #     self.epics_pvs['TSSampleOutX'].put(value['SampleOutX'], wait=True) 
-        #     self.epics_pvs['TSSampleInY'].put(value['SampleInY'], wait=True) 
-        #     self.epics_pvs['TSSampleOutY'].put(value['SampleOutY'], wait=True) 
-        #     self.epics_pvs['TSSampleOutAngleEnable'].put(value['SampleOutAngleEnable'], wait=True) 
-        #     self.epics_pvs['TSSampleOutAngle'].put(value['SampleOutAngle'], wait=True) 
-        #     self.epics_pvs['TSScanType'].put(value['ScanType'], wait=True) 
-        #     self.epics_pvs['TSFlipStitch'].put(value['FlipStitch'], wait=True) 
-        #     self.epics_pvs['TSExposureTime'].put(value['ExposureTime'], wait=True)
+                self.epics_pvs['TSSampleX'].put(value['SampleX'], wait=True)
+                self.epics_pvs['TSSampleY'].put(value['SampleY'], wait=True)
+                self.epics_pvs['TSRotationStart'].put(value['RotationStart'], wait=True) 
+                self.epics_pvs['TSRotationStep'].put(value['RotationStep'], wait=True)
+                self.epics_pvs['TSNumAngles'].put(value['NumAngles'], wait=True) 
+                self.epics_pvs['TSReturnRotation'].put(value['ReturnRotation'], wait=True) 
+                self.epics_pvs['TSNumDarkFields'].put(value['NumDarkFields'], wait=True) 
+                self.epics_pvs['TSDarkFieldMode'].put(value['DarkFieldMode'], wait=True) 
+                self.epics_pvs['TSDarkFieldValue'].put(value['DarkFieldValue'], wait=True) 
+                self.epics_pvs['TSNumFlatFields'].put(value['NumFlatFields'], wait=True) 
+                self.epics_pvs['TSFlatFieldAxis'].put(value['FlatFieldAxis'], wait=True) 
+                self.epics_pvs['TSFlatFieldMode'].put(value['FlatFieldMode'], wait=True) 
+                self.epics_pvs['TSFlatFieldValue'].put(value['FlatFieldValue'], wait=True) 
+                self.epics_pvs['TSFlatExposureTime'].put(value['FlatExposureTime'], wait=True) 
+                self.epics_pvs['TSDifferentFlatExposure'].put(value['DifferentFlatExposure'], wait=True) 
+                self.epics_pvs['TSSampleInX'].put(value['SampleInX'], wait=True) 
+                self.epics_pvs['TSSampleOutX'].put(value['SampleOutX'], wait=True) 
+                self.epics_pvs['TSSampleInY'].put(value['SampleInY'], wait=True) 
+                self.epics_pvs['TSSampleOutY'].put(value['SampleOutY'], wait=True) 
+                self.epics_pvs['TSSampleOutAngleEnable'].put(value['SampleOutAngleEnable'], wait=True) 
+                self.epics_pvs['TSSampleOutAngle'].put(value['SampleOutAngle'], wait=True) 
+                self.epics_pvs['TSScanType'].put(value['ScanType'], wait=True) 
+                self.epics_pvs['TSFlipStitch'].put(value['FlipStitch'], wait=True) 
+                self.epics_pvs['TSExposureTime'].put(value['ExposureTime'], wait=True)
 
-        #     log.warning('Scan key/number: %s ', key)
-        #     log.warning('%s stage position: %3.3f mm', 'Sample Y', value['SampleY'])
-        #     log.warning('%s stage position: %3.3f mm', 'Sample X', value['SampleX'])
-        #     if flat_field_axis in ('X') or flat_field_mode == 'None':
-        #         pv_y = "TSSampleY"
-        #     else:
-        #         pv_y = "TSSampleInY"
-        #     self.epics_pvs[pv_y].put(value['SampleY'], wait=True)
-        #     if flat_field_axis in ('Y') or flat_field_mode == 'None':
-        #         pv_x = "TSSampleX"
-        #     else:
-        #         pv_x = "TSSampleInX"
-        #     self.epics_pvs[pv_x].put(value['SampleX'], wait=True, timeout=600)
-        #     # single_scan(args, ts)
-        #     # config.write(args.config, args, sections=config.SINGLE_SCAN_PARAMS)
+                log.warning('Scan key/number: %s ', key)
+                log.warning('%s stage position: %3.3f mm', 'Sample Y', value['SampleY'])
+                log.warning('%s stage position: %3.3f mm', 'Sample X', value['SampleX'])
+                if flat_field_axis in ('X') or flat_field_mode == 'None':
+                    pv_y = "TSSampleY"
+                else:
+                    pv_y = "TSSampleInY"
+                self.epics_pvs[pv_y].put(value['SampleY'], wait=True)
+                if flat_field_axis in ('Y') or flat_field_mode == 'None':
+                    pv_x = "TSSampleX"
+                else:
+                    pv_x = "TSSampleInX"
+                self.epics_pvs[pv_x].put(value['SampleX'], wait=True, timeout=600)
+                # single_scan(args, ts)
+                # config.write(args.config, args, sections=config.SINGLE_SCAN_PARAMS)
 
-        # dtime = (time.time() - tic_01)/60.
-        # log.info('file scan time: %3.3f minutes', dtime)
-        # self.epics_pvs['TSScanType'].put('Single', wait=True)
+            dtime = (time.time() - tic_01)/60.
+            log.info('file scan time: %3.3f minutes', dtime)
+            self.epics_pvs['TSScanType'].put('Single', wait=True)
 
